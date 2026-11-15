@@ -141,7 +141,7 @@ body{
 /* ---------- phones: less scroll distance through the pinned scenes ---------- */
 @media (max-width:899px){
   .sk{height:280vh!important}
-  .uni{height:130vh!important}
+  .uni{height:340vh!important}
   #experience{height:200vh!important}
   #about{min-height:150vh!important}
 }

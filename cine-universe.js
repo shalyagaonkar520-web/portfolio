@@ -1,4 +1,4 @@
-// "My AI Arsenal": a dark, red-lit room. Shalya stands in the middle on a wet floor while
+// "My AI Arsenal": a dark, red-lit room. Shalya (a scroll-played film) stands in the middle on a wet floor while
 // rounded cubes for the AI tools he builds with float around him. The cubes materialise
 // together when the section arrives, drift and turn, lean toward the cursor, and lift on hover.
 import * as THREE from 'three';
@@ -86,37 +86,60 @@ function init() {
   const halo2 = new THREE.Mesh(new THREE.TorusGeometry(4.6, 0.01, 8, 220, Math.PI * 1.2), new THREE.MeshBasicMaterial({ color: 0xff3326, transparent: true, opacity: 0.0 }));
   halo2.position.set(0.4, 2.2, -5); halo2.rotation.z = 0.5; scene.add(halo2);
 
-  // ---------- the figure: matted photo, graded down, with a red rim generated from its alpha ----------
-  const figTex = new THREE.TextureLoader().load('assets/cine/me_cut.png');
-  figTex.colorSpace = THREE.SRGBColorSpace;
-  const FIG_H = 3.7, FIG_W = FIG_H * (450 / 1450);
-  const figMat = new THREE.ShaderMaterial({
-    uniforms: { uTex: { value: figTex }, uMat: { value: 0 }, uFlip: { value: 0 }, uTexel: { value: new THREE.Vector2(1 / 450, 1 / 1450) } },
-    transparent: true, depthWrite: false,
-    vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.); }`,
+  // ---------- the film: Shalya's sunglasses clip, played by scroll, keyed into the room ----------
+  // The clip was shot on a white studio wall. While he stands and takes the glasses off, the wall is
+  // keyed out so he stands in this room. As he throws them the studio floods back in full-screen, the
+  // glass cracks and shatters to black, the cubes burst in, and he returns keyed into the room.
+  const video = document.createElement('video');
+  video.muted = true; video.playsInline = true; video.preload = 'auto'; video.setAttribute('playsinline', '');
+  // browsers only decode frames for a video that is in the page and has been started once
+  video.style.cssText = 'position:absolute;left:0;top:0;width:2px;height:2px;opacity:0;pointer-events:none';
+  canvas.parentNode.appendChild(video);
+  video.addEventListener('loadeddata', () => { const pr = video.play(); if (pr && pr.then) pr.then(() => { video.pause(); }).catch(() => {}); }, { once: true });
+  fetch('assets/cine/smash.mp4').then((r) => r.blob()).then((b) => { video.src = URL.createObjectURL(b); })
+    .catch(() => { video.src = 'assets/cine/smash.mp4'; });
+  // frames go through a 2D canvas: uploading a paused, seeked <video> straight to WebGL is unreliable
+  const vCan = document.createElement('canvas'); vCan.width = 1024; vCan.height = 576;
+  const vCtx = vCan.getContext('2d');
+  const vTex = new THREE.CanvasTexture(vCan);
+  vTex.minFilter = THREE.LinearFilter; vTex.magFilter = THREE.LinearFilter; vTex.generateMipmaps = false;
+  vTex.colorSpace = THREE.NoColorSpace;
+  let vReady = false, vDur = 7.5, vCur = 0;
+  const vFresh = () => { if (video.readyState >= 2) { vCtx.drawImage(video, 0, 0, vCan.width, vCan.height); vTex.needsUpdate = true; vReady = true; } };
+  video.addEventListener('pause', vFresh); video.addEventListener('timeupdate', vFresh);
+  video.addEventListener('loadeddata', vFresh); video.addEventListener('seeked', vFresh);
+  video.addEventListener('loadedmetadata', () => { if (isFinite(video.duration)) vDur = video.duration - 1 / 24; });
+  addEventListener('touchstart', () => { const pr = video.play(); if (pr && pr.then) pr.then(() => video.pause()).catch(() => {}); }, { passive: true, once: true });
+
+  const filmMat = new THREE.ShaderMaterial({
+    uniforms: { uTex: { value: vTex }, uOn: { value: 0 }, uKey: { value: 1 }, uAspect: { value: 1 } },
+    transparent: true, depthTest: false, depthWrite: false,
+    vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }`,
     fragmentShader: `
-      uniform sampler2D uTex; uniform float uMat, uFlip; uniform vec2 uTexel; varying vec2 vUv;
+      uniform sampler2D uTex; uniform float uOn, uKey, uAspect; varying vec2 vUv;
       void main(){
-        vec2 uv = vec2(vUv.x, uFlip > 0.5 ? 1.0 - vUv.y : vUv.y);
-        vec4 c = texture2D(uTex, uv);
-        // rim: how much alpha drops off to each side
-        float l = texture2D(uTex, uv + vec2(-6.0, 0.0) * uTexel).a, r = texture2D(uTex, uv + vec2(6.0, 0.0) * uTexel).a;
-        float u = texture2D(uTex, uv + vec2(0.0, 6.0) * uTexel).a;
-        float rimL = clamp(c.a - l, 0.0, 1.0), rimR = clamp(c.a - r, 0.0, 1.0), rimU = clamp(c.a - u, 0.0, 1.0);
-        vec3 col = (c.rgb - 0.5) * 1.08 + 0.5; col *= vec3(0.9, 0.86, 0.86);  // near-natural, like a lit subject
-        col += vec3(1.0, 0.18, 0.12) * (rimL * 0.8 + rimU * 0.45) + vec3(1.0, 0.45, 0.3) * rimR * 0.35;
-        float a = c.a * uMat;
-        if (uFlip > 0.5) { a *= 0.22 * smoothstep(0.55, 1.0, vUv.y); col *= 0.6; }
-        gl_FragColor = vec4(col, a);
+        // cover-fit the 16:9 film; while keyed, show him a little smaller and higher so his feet meet the floor
+        vec2 uv = vUv - 0.5;
+        float va = 16.0 / 9.0;
+        if (uAspect > va) uv.y *= va / uAspect; else uv.x *= uAspect / va;
+        float zoom = mix(0.80, 1.0, 1.0 - uKey);
+        uv = uv / zoom + 0.5;
+        uv.y -= mix(0.085, 0.0, 1.0 - uKey);
+        if (uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0) discard;
+        vec3 c = texture2D(uTex, uv).rgb;
+        float luma = dot(c, vec3(0.299, 0.587, 0.114));
+        float sat = max(c.r, max(c.g, c.b)) - min(c.r, min(c.g, c.b));
+        // the wall and floor are bright and colourless; skin is bright but coloured, so it is kept
+        float wall = smoothstep(0.50, 0.68, luma) * (1.0 - smoothstep(0.07, 0.17, sat));
+        float a = 1.0 - wall * uKey;
+        // soft edge of the keyed frame so no rectangle shows
+        vec2 e = smoothstep(vec2(0.0), vec2(0.06), uv) * smoothstep(vec2(0.0), vec2(0.06), 1.0 - uv);
+        a *= mix(1.0, e.x * e.y, uKey);
+        gl_FragColor = vec4(c * mix(1.0, 0.94, uKey), a * uOn);
       }`,
   });
-  const fig = new THREE.Mesh(new THREE.PlaneGeometry(FIG_W, FIG_H), figMat);
-  fig.position.set(0, FIG_H / 2, 0); // the standing photo is no longer shown: the sunglasses film on page 2 replaced it
-  const reflMat = figMat.clone(); reflMat.uniforms = THREE.UniformsUtils.clone(figMat.uniforms);
-  reflMat.uniforms.uTex.value = figTex; reflMat.uniforms.uFlip.value = 1;
-  const refl = new THREE.Mesh(new THREE.PlaneGeometry(FIG_W, FIG_H), reflMat);
-  refl.position.set(0, -FIG_H / 2 + 0.01, 0); refl.renderOrder = 2; reflMat.depthTest = false;
-  fig.renderOrder = 3;
+  const film = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), filmMat);
+  film.frustumCulled = false; film.renderOrder = 5; scene.add(film);
 
   // ---------- tool cubes ----------
   function faceTexture(name, accent, glyph) {
@@ -189,7 +212,7 @@ function init() {
   scene.add(new THREE.Points(eGeo, eMat));
 
   // ---------- state ----------
-  let visible = false, raf = 0, last = performance.now(), time = 0, mat = RM ? 1 : 0, started = RM;
+  let visible = false, raf = 0, last = performance.now(), time = 0, mat = RM ? 1 : 0, started = RM, cmat = 0;
   const mouse = new THREE.Vector2(), mouseT = new THREE.Vector2();
   const ray = new THREE.Raycaster(); const ndc = new THREE.Vector2(9, 9);
   let hovered = -1;
@@ -223,7 +246,19 @@ function init() {
     camera.lookAt(0, 2.0, 0);
 
     floorMat.uniforms.uTime.value = time; floorMat.uniforms.uMat.value = m;
-    figMat.uniforms.uMat.value = m; reflMat.uniforms.uMat.value = m;
+    // film: scroll plays it. 0-4.4s keyed into the room, 4.4-6.9s the studio takes over the screen
+    // (throw, crack, shatter to black), then he is keyed back in without the glasses
+    const vT = Math.min(1, p / 0.86) * vDur;
+    vCur += (vT - vCur) * (RM ? 1 : 0.2);
+    if (Math.abs(vT - vCur) < 0.004) vCur = vT;
+    if (video.readyState >= 1 && !video.seeking && Math.abs(video.currentTime - vCur) > 0.02) video.currentTime = vCur;
+    const ss = (e0, e1, x) => { const t = Math.min(1, Math.max(0, (x - e0) / (e1 - e0))); return t * t * (3 - 2 * t); };
+    filmMat.uniforms.uKey.value = 1 - ss(4.35, 4.8, vCur) + ss(6.25, 6.9, vCur);
+    filmMat.uniforms.uOn.value = vReady ? m : 0;
+    filmMat.uniforms.uAspect.value = camera.aspect;
+    // the cubes arrive with the smash, and leave again if you scroll back above it
+    cmat = Math.min(1, Math.max(0, cmat + (vCur > 5.45 || RM ? dt / 1.4 : -dt / 0.5)));
+    const cm = 1 - Math.pow(1 - cmat, 3);
     eMat.uniforms.uTime.value = time; eMat.uniforms.uMat.value = m;
     halo.material.opacity = 0.55 * m; halo2.material.opacity = 0.3 * m;
     halo.rotation.z += dt * 0.05; halo2.rotation.z -= dt * 0.03;
@@ -242,7 +277,7 @@ function init() {
 
     cubes.forEach((c, i) => {
       // materialise together: one event, each cube travels its own little arc into place
-      const k = Math.min(1, Math.max(0, m * 1.15 - (i % 4) * 0.04));
+      const k = Math.min(1, Math.max(0, cm * 1.15 - (i % 4) * 0.04));
       const e = 1 - Math.pow(1 - k, 4);
       c.hover += ((i === hovered ? 1 : 0) - c.hover) * Math.min(1, dt * 8);
       const bob = RM ? 0 : Math.sin(time * 0.8 + c.seed) * 0.12;
