@@ -1,0 +1,63 @@
+/* ==========================================================
+   Light theme for everything after the hero, matching the
+   hero (#EDEDED) and the newspaper section (#e7e4dc).
+   Loaded last so it overrides the dark Tailwind classes.
+   ========================================================== */
+:root{--paper:#e7e4dc;--paper-2:#efece5;--ink:#141414;--ink-2:#3b382f;--ink-3:#6b675e;--rule:rgba(20,20,20,.14)}
+
+/* ---------- Skills valley ---------- */
+#skills.valley{background:var(--paper)!important;color:var(--ink)!important}
+#skills .valley-vignette{background:radial-gradient(ellipse at 50% 55%,transparent 40%,rgba(231,228,220,calc(var(--vig) + .25)) 100%)}
+#skills .valley-rays{display:none}
+#skills .valley-label{color:rgba(20,20,20,.62)}
+#skills .valley-title{color:var(--ink)}
+#skills .valley-cap{color:rgba(20,20,20,.82)}
+#skills .valley-stage{text-shadow:0 0 24px rgba(231,228,220,.95),0 0 4px rgba(231,228,220,.9)}
+#skills .valley-go{border-color:var(--ink);color:var(--ink)}
+#skills .valley-go:hover,#skills .valley-go:focus-visible{background:var(--ink);color:#fff}
+#skills .valley-chips li{border:1px solid rgba(20,20,20,.18);background:rgba(255,255,255,.78);color:var(--ink);text-shadow:none}
+#skills .valley-grid>div{border:1px solid rgba(20,20,20,.14);background:rgba(255,255,255,.8);text-shadow:none}
+#skills .valley-grid>div p:last-child{color:rgba(20,20,20,.85)}
+#skills .valley-corner i{background:rgba(20,20,20,.35)}
+#skills .valley-sound{color:var(--ink)}
+#skills .valley-sound:focus-visible{outline-color:var(--ink)}
+#skills .valley-loader{background:var(--paper)}
+#skills .valley-loader span{background:var(--ink)}
+#skills [class~="bg-[#f5efe2]/20"]{background:rgba(20,20,20,.15)!important}
+#skills #valley-progress{background:var(--ink)!important}
+
+/* ---------- About (expanding media card) ---------- */
+#about{background:var(--paper)!important;color:var(--ink)!important}
+#about #sem-bg-img{display:none!important}
+/* dark title with a white halo so it reads on the paper and over the dark photo card */
+#about #sem-title-first,#about #sem-title-rest{color:var(--ink)!important;filter:none!important;text-shadow:0 0 2px rgba(255,255,255,.9),0 0 22px rgba(255,255,255,.85),0 0 44px rgba(255,255,255,.6)!important}
+#about #sem-media-content{color:#fff}
+#about #sem-date{color:var(--ink-2)!important;filter:none}
+#about #sem-scroll-prompt{color:var(--ink-3)!important;filter:none}
+#about #sem-media-container{box-shadow:0 40px 80px -30px rgba(40,30,10,.45)!important}
+/* text inside the photo card stays light on its dark overlay */
+
+/* ---------- Experience (horizontal journey) ---------- */
+#experience,#experience #exp-sticky-viewport{background:var(--paper)!important;color:var(--ink)!important}
+#experience [class~="bg-[#070709]/80"]{background:rgba(231,228,220,.85)!important}
+#experience .text-white{color:var(--ink)!important}
+#experience .text-neutral-200{color:#2a2822!important}
+#experience .text-neutral-300{color:var(--ink-2)!important}
+#experience .text-neutral-400,#experience .text-neutral-500{color:var(--ink-3)!important}
+#experience [class~="text-white/[0.04]"]{color:rgba(20,20,20,.05)!important}
+#experience [class~="border-white/[0.08]"],#experience [class~="border-white/10"],#experience [class~="border-white/5"]{border-color:var(--rule)!important}
+#experience [class~="border-white/15"],#experience [class~="border-white/20"],#experience [class~="border-white/40"]{border-color:rgba(20,20,20,.28)!important}
+#experience [class~="bg-white/[0.04]"],#experience [class~="bg-white/10"],#experience [class~="bg-white/15"]{background:rgba(20,20,20,.05)!important}
+#experience [class~="bg-white/20"]{background:rgba(20,20,20,.12)!important}
+#experience #exp-hud-progress,#experience .bg-white{background:var(--ink)!important}
+#experience #exp-ticker-top,#experience #exp-ticker-bottom{color:var(--ink)}
+
+/* ---------- Contact footer ---------- */
+#contact{background:var(--paper)!important;color:var(--ink)!important}
+#contact .text-white{color:var(--ink)!important}
+#contact .text-neutral-200,#contact .text-neutral-300{color:var(--ink-2)!important}
+#contact .text-neutral-400,#contact .text-neutral-500{color:var(--ink-3)!important}
+#contact .border-neutral-700,#contact .border-neutral-800,#contact .border-neutral-900{border-color:rgba(20,20,20,.22)!important}
+#contact .border-neutral-700:hover{border-color:var(--ink)!important}
+#contact .bg-white{background:var(--ink)!important;color:#fff!important}
+#contact .bg-white *{color:inherit}

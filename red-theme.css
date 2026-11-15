@@ -1,0 +1,151 @@
+/* ==========================================================
+   Red theme: every section after the hero shares the cinematic
+   look of the AI arsenal / journey scenes. Near-black, ember red,
+   warm paper text. Loaded last so it wins over fx.css.
+   ========================================================== */
+:root{
+  --bp-paper:#070304; --bp-ink:#f4efe6; --bp-blue:#ff3b30; --bp-red:#ff8a3a;
+  --rt-bg:#070304; --rt-card:#120809; --rt-card2:#1a0b0c; --rt-line:rgba(255,59,48,.22); --rt-text:#f4efe6; --rt-dim:rgba(244,239,230,.62);
+}
+
+/* page background: dark red-tinted blueprint grid, red spotlight under the mouse */
+body{
+  background-color:var(--rt-bg)!important;
+  background-image:
+    linear-gradient(rgba(255,59,48,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,59,48,.07) 1px,transparent 1px),
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),
+    radial-gradient(280px circle at var(--mx) var(--my),transparent 0,var(--rt-bg) 100%),
+    linear-gradient(rgba(255,59,48,.45) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,59,48,.45) 1px,transparent 1px)!important;
+  color:var(--rt-text);
+}
+
+/* hero keeps its photo; just a red accent on the underline */
+
+/* ---------- newspaper section: the cream paper now lies on a dark, red-lit desk ---------- */
+.press{background:radial-gradient(ellipse at 50% 40%,#2a0d0b 0%,#0d0506 55%,#070304 100%)!important;color:var(--rt-text)}
+.press-label{color:#ff3b30!important}
+.paper{box-shadow:0 1px 0 rgba(0,0,0,.2),0 40px 80px -24px rgba(0,0,0,.85),0 0 120px -30px rgba(255,59,48,.35)!important}
+.idc-string{background:linear-gradient(#ff3b30,#5a1410)!important}
+.idc{box-shadow:0 30px 60px -18px rgba(0,0,0,.9),0 0 50px -12px rgba(255,59,48,.5),inset 0 0 0 1px rgba(255,59,48,.25)!important}
+
+/* ---------- skills network ---------- */
+.sk{color:var(--rt-text)}
+.sk-lab{color:var(--rt-text)!important;background:rgba(18,8,9,.82)!important;border-color:rgba(255,59,48,.22)!important}
+.sk-lab.hub{background:#f4efe6!important;color:#120809!important;border-color:#f4efe6!important}
+.sk-lab.act{color:#fff!important;border-color:rgba(255,59,48,.7)!important;background:rgba(60,12,10,.9)!important}
+.sk-lab.hub.act{background:#ff3b30!important;border-color:#ff3b30!important;color:#fff!important}
+.sk-lab.near{border-color:#ff8a3a!important;color:#ff8a3a!important}
+.sk-top{color:rgba(244,239,230,.55)!important}
+.sk-sub{color:var(--rt-dim)!important}
+.sk-term{background:#0f0708!important;border-color:rgba(255,59,48,.3)!important;box-shadow:0 30px 60px -28px rgba(0,0,0,.9),0 0 50px -16px rgba(255,59,48,.35)!important}
+.sk-term-bar{background:#180a0b!important;border-color:rgba(255,59,48,.18)!important;color:var(--rt-dim)!important}
+.sk-term-body{color:var(--rt-text)!important}
+.sk-term-body .c{color:rgba(244,239,230,.4)!important}
+.sk-term-body .ok{color:#3ddc84!important}
+.sk-steps{background:rgba(18,8,9,.85)!important;border-color:rgba(255,59,48,.25)!important}
+.sk-steps button{color:var(--rt-dim)!important}
+.sk-steps button:hover{color:#fff!important}
+.sk-steps button.on{background:#ff3b30!important;color:#fff!important}
+.sk-steps button.on b{color:#fff!important}
+.sk-progress{background:rgba(255,59,48,.12)!important}
+
+/* ---------- about: keep the original dark section, red accents ---------- */
+#about #sem-date{color:rgba(244,239,230,.75)!important}
+.about-k{color:#ff6a5a!important}
+.about-panel{border-color:rgba(255,59,48,.22)!important}
+
+/* ---------- experience: original dark styling, red progress and accents ---------- */
+#experience #exp-hud-progress{background:#ff3b30!important}
+#experience header,#experience footer{background:rgba(7,3,4,.82)!important;border-color:rgba(255,59,48,.18)!important}
+
+/* ---------- GitHub numbers ---------- */
+#projects h2{color:var(--rt-text)!important}
+#projects .text-neutral-700{color:var(--rt-dim)!important}
+.gh-kicker{color:#ff3b30!important}
+.gh-stat,.gh-chart{background:linear-gradient(180deg,var(--rt-card2),var(--rt-card))!important;border-color:var(--rt-line)!important;box-shadow:0 30px 60px -30px rgba(0,0,0,.9)}
+.gh-stat::before{border-color:#ff3b30!important}
+.gh-stat b{color:var(--rt-text)!important}
+.gh-stat span{color:var(--rt-text)}
+.gh-stat small,.gh-chart figcaption{color:rgba(244,239,230,.5)!important}
+.gh-bars{border-color:rgba(255,59,48,.35)!important}
+.gh-bar{background:rgba(244,239,230,.85)!important}
+.gh-bar:first-child{background:#ff3b30!important;box-shadow:0 0 20px rgba(255,59,48,.6)}
+.gh-bar:hover{background:#ff8a3a!important}
+.gh-bar span{color:rgba(244,239,230,.6)!important}
+
+/* ---------- services ---------- */
+#services h2{color:var(--rt-text)!important}
+#services .text-center>p{color:var(--rt-dim)!important}
+#services .accordion-item{background:var(--rt-card)!important;border-color:var(--rt-line)!important;color:var(--rt-text)}
+#services .accordion-item:hover{border-color:rgba(255,59,48,.6)!important}
+#services .accordion-item.active{background:linear-gradient(180deg,#2a0b0a,#120607)!important;border-color:#ff3b30!important;box-shadow:0 0 50px -14px rgba(255,59,48,.6)!important}
+#services .item-title,#services .text-neutral-800,#services .text-neutral-700{color:var(--rt-text)!important}
+#services .text-neutral-500,#services .text-neutral-400{color:var(--rt-dim)!important}
+#services .border-neutral-300,#services .border-neutral-200{border-color:var(--rt-line)!important}
+#services svg{color:var(--rt-text)}
+
+/* ---------- contact ---------- */
+#contact h2.footer-metallic-title{background:linear-gradient(180deg,#fff 0%,#ff8a7a 55%,#7a1410 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
+#contact .border-neutral-900,#contact .border-neutral-800{border-color:rgba(255,59,48,.2)!important}
+#contact .text-neutral-600{color:rgba(244,239,230,.45)!important}
+
+/* ---------- Venom buttons on dark: a red ember glow behind the goo so it reads ---------- */
+.vbtn::before{content:'';position:absolute;inset:-14px -22px;border-radius:999px;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(255,59,48,.38),rgba(255,59,48,0));filter:blur(4px)}
+#home .vbtn::before,#home .venom-slot::before{display:none}
+.venom-slot--center::before{content:'';position:absolute;inset:-14px -22px;border-radius:999px;pointer-events:none;background:radial-gradient(closest-side,rgba(255,59,48,.38),rgba(255,59,48,0));filter:blur(4px)}
+
+/* ---------- cursor + HUD on dark ---------- */
+.fx-dot{background:#fff!important}
+.fx-cross-h,.fx-cross-v{background:rgba(255,59,48,.28)!important}
+.fx-coord{background:rgba(18,8,9,.92)!important;color:#ff3b30!important}
+.fx-coord b{color:#fff!important}
+.fx-hud-label{color:rgba(244,239,230,.55)!important}
+.fx-ruler,.fx-ruler-wrap::before{filter:invert(1) sepia(1) saturate(4) hue-rotate(-20deg) brightness(.8)}
+.fx-head::after{color:#ff3b30!important;-webkit-text-fill-color:#ff3b30!important}
+
+/* ---------- nav venom row in the hero ---------- */
+.vnav{align-items:center;gap:44px}
+.vbtn--nav{--m:22px;height:38px}
+.vbtn--nav .venom-frame{height:calc(38px + var(--m) * 2)}
+
+/* the paper itself stays printed in ink, whatever the desk around it */
+.paper{color:#141414!important}
+
+/* ---------- newspaper: printed on warm, rose-tinted stock and slightly dimmed so it sits in the red room ---------- */
+.paper{background-color:#e8d3c9!important;
+  background-image:radial-gradient(120% 80% at 10% 0%,rgba(255,235,225,.45),transparent 60%),
+    linear-gradient(180deg,rgba(150,30,20,.06),rgba(120,15,10,.16)),
+    linear-gradient(90deg,transparent calc(50% - 1px),rgba(0,0,0,.06) 50%,transparent calc(50% + 1px))!important;
+  filter:brightness(.92) saturate(1.05)}
+.paper::before{background:#c9aea2!important}
+.np-mast,.np-strip,.np-foot{border-color:#3a1210!important}
+.np-wide::after{background:#e8d3c9!important}
+
+
+
+/* GitHub numbers: three stats now */
+.gh-stats{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+@media (max-width:899px){.gh-stats{grid-template-columns:repeat(3,minmax(0,1fr))!important}.gh-stat b{font-size:44px!important}}
+
+/* ---------- About: the starry-castle painting washed in ember red ---------- */
+#about #sem-bg-img{display:block!important}
+#about #sem-bg-img::after{content:'';position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;
+  background:radial-gradient(ellipse at 50% 45%,#ff9a8a 0%,#d2443a 55%,#4a0b08 100%)}
+#about #sem-bg-img::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:screen;
+  background:radial-gradient(ellipse at 50% 50%,rgba(255,59,48,.18),transparent 65%)}
+
+/* ---------- phones: less scroll distance through the pinned scenes ---------- */
+@media (max-width:899px){
+  .sk{height:280vh!important}
+  .uni{height:130vh!important}
+  #experience{height:200vh!important}
+  #about{min-height:150vh!important}
+}
+
+/* ---------- smoothness: promote the pinned layers, keep paint work light ---------- */
+.sk-pin,.uni-pin,.jr-pin,#exp-sticky-viewport{will-change:transform;transform:translateZ(0)}
+@media (max-width:899px),(prefers-reduced-motion:reduce){.cine-grain{animation:none}}

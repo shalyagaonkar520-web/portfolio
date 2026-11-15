@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Jishnu Mondal — Monochrome Editorial Developer & Designer Portfolio</title>
-  <meta name="description" content="Portfolio of Jishnu Mondal, a talented freelance designer & developer specializing in UI/UX, Web Design, Landing Pages, Figma, and Webflow.">
+  <title>Shalya Gaonkar — AI Product Developer</title>
+  <meta name="description" content="Portfolio of Shalya Gaonkar, an AI Product Developer in Bengaluru, India, building intelligent web products with TypeScript, JavaScript and Python.">
   
   <!-- Tailwind CSS v3 with Plugins -->
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script>
     tailwind.config = {
@@ -33,8 +34,9 @@
   <!-- Typography & Gradients Stylesheet -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Antonio:wght@400&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,500&family=Caveat:wght@500;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="FlexCarousel.css">
+  <link rel="stylesheet" href="press-section.css">
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -194,149 +196,384 @@
       transform: translateY(0);
       opacity: 1;
     }
+
+    /* Hero nav + icons */
+    .nav-link { border: 1px solid transparent; }
+    .nav-link:hover { border-color: rgba(0,0,0,.25); }
+    .nav-link.nav-active { background: #000; color: #fff; border-color: #000; }
+    .hero-icon { width: 2.25rem; height: 2.25rem; display: inline-flex; align-items: center; justify-content: center; color: #000; border-radius: 9999px; transition: transform .2s ease, background-color .2s ease; }
+    .hero-icon svg { width: 1.45rem; height: 1.45rem; }
+    .hero-icon:hover { transform: translateY(-2px); background: rgba(0,0,0,.06); }
+    @media (min-width: 1024px) { .hero-icon { width: 2.6vw; height: 2.6vw; } .hero-icon svg { width: 1.75vw; height: 1.75vw; } }
+    @media (max-width: 380px) { .hero-icon { width: 1.9rem; height: 1.9rem; } .hero-icon svg { width: 1.15rem; height: 1.15rem; } }
+
+    /* ============ Skills valley ============ */
+    .valley { --vig: .55; }
+    .valley-vignette { background: radial-gradient(ellipse at 50% 55%, transparent 35%, rgba(0,0,0,var(--vig)) 100%); }
+    .valley-rays { background:
+      linear-gradient(115deg, transparent 30%, rgba(245,239,226,.035) 42%, transparent 50%),
+      linear-gradient(100deg, transparent 55%, rgba(200,180,255,.03) 63%, transparent 70%);
+      mix-blend-mode: screen; }
+    .valley-corner { display: flex; align-items: center; gap: 18px; pointer-events: auto; }
+    .valley-corner i { width: 1px; height: 26px; background: rgba(245,239,226,.45); }
+    .valley-sound { display: grid; place-items: center; width: 28px; height: 28px; color: #f5efe2; background: none; border: 0; cursor: pointer; }
+    .valley-sound svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .valley-sound path { transition: opacity .3s; }
+    .valley-sound[aria-pressed=false] .w, .valley-sound[aria-pressed=true] .x { opacity: 0; }
+    .valley-sound:focus-visible { outline: 2px solid #f5efe2; outline-offset: 3px; }
+    .valley-loader { position: absolute; inset: 0; z-index: 20; display: grid; place-items: center; background: #000; transition: opacity 1s ease; pointer-events: none; }
+    .valley-loader.gone { opacity: 0; }
+    .valley-loader span { width: 9px; height: 9px; border-radius: 50%; background: #f5efe2; animation: valleyPulse 1.2s ease-in-out infinite; }
+    @keyframes valleyPulse { 50% { transform: scale(.4); opacity: .4; } }
+    .valley-ui { opacity: 0; transition: opacity 1.6s ease; }
+    .valley.on .valley-ui { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) { .valley-loader span { animation: none; } }
+    .valley-label { font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: rgba(245,239,226,.75); }
+    .valley-stage { position: absolute; left: 0; right: 0; top: 50%; translate: 0 -46%; z-index: 5; padding: 0 24px;
+      display: flex; flex-direction: column; align-items: center; text-align: center; opacity: 0; pointer-events: none;
+      will-change: opacity, transform, filter; text-shadow: 0 2px 30px rgba(0,0,0,.6); }
+    .valley-title { font-family: Antonio, "Arial Narrow", sans-serif; font-weight: 400; color: #f5efe2;
+      font-size: clamp(64px, 9.9vw, 168px); line-height: .92; letter-spacing: -.012em; }
+    .valley-title--sm { font-size: clamp(56px, 7.5vw, 128px); }
+    .valley-cap { margin-top: 36px; font-size: clamp(16px, 1.25vw, 20px); line-height: 1.35; color: rgba(245,239,226,.9); }
+    .valley-go { margin-top: 30px; width: 58px; height: 58px; display: grid; place-items: center; border-radius: 50%;
+      border: 1.5px solid #f5efe2; color: #f5efe2; transition: background .3s, color .3s; }
+    .valley-go:hover, .valley-go:focus-visible { background: #f5efe2; color: #151510; }
+    .valley-go svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .valley-chips { margin-top: 34px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 860px; }
+    .valley-chips li { list-style: none; padding: 10px 18px; border-radius: 999px; font-size: 14px; font-weight: 500;
+      border: 1px solid rgba(245,239,226,.35); background: rgba(3,4,10,.45); backdrop-filter: blur(6px); color: #f5efe2; }
+    .valley-grid { margin-top: 30px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; max-width: 980px; text-align: left; }
+    .valley-grid > div { padding: 18px 20px; border-radius: 18px; border: 1px solid rgba(245,239,226,.2); background: rgba(3,4,10,.55); backdrop-filter: blur(8px); }
+    .valley-grid > div p:last-child { margin-top: 8px; font-size: 14px; line-height: 1.6; color: rgba(245,239,226,.92); }
+    @media (max-width: 820px) {
+      .valley-grid { grid-template-columns: 1fr; gap: 10px; }
+      .valley-grid > div { padding: 12px 14px; }
+      .valley-grid > div p:last-child { font-size: 12.5px; }
+      .valley-chips li { font-size: 12.5px; padding: 8px 14px; }
+      .valley-stage--all .valley-title { font-size: 48px; }
+    }
   </style>
+  <link rel="stylesheet" href="fx.css">
+  <link rel="stylesheet" href="cine.css">
+  <link rel="stylesheet" href="red-theme.css">
 </head>
 <body class="antialiased text-[#111] bg-[#FAFAFA]">
 
   <!-- Notification Toast Container -->
   <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
-  <!-- BEGIN: Navigation Header -->
-  <header class="relative z-40 bg-[#FAFAFA] transition-all duration-300 w-full pt-6 pb-4 px-6 md:px-14 max-w-[1400px] mx-auto flex items-center justify-between" data-purpose="site-navigation">
-    <!-- Brand Wordmark -->
-    <a class="group font-extrabold text-xl tracking-tight text-black flex items-center" href="#home">
-      <span>ECHO</span>
-      <span class="inline-block w-2 h-2 bg-black rounded-full ml-1 transition-transform group-hover:scale-150 duration-200"></span>
-    </a>
+  <!-- BEGIN: Hero Section (nav + editorial portrait hero) -->
+  <main class="relative w-full overflow-hidden bg-[#EDEDED] lg:h-[100svh] lg:min-h-[640px] lg:max-h-[1100px]" data-purpose="hero-section" id="home">
+    <!-- Desktop background portrait -->
+    <img src="assets/hero_shalya.jpg" alt="" aria-hidden="true"
+         class="hero-bg hidden lg:block absolute inset-0 w-full h-full object-cover object-[72%_center] pointer-events-none select-none">
 
-    <!-- Center Navigation Links (Pill with no unwanted wrapping) -->
-    <nav class="hidden md:flex items-center gap-1 p-1 bg-white/95 border border-[#E2E2E2] rounded-full shadow-sm text-xs font-semibold tracking-wider text-neutral-600">
-      <a id="nav-home" class="nav-link px-4 py-2 rounded-full border border-neutral-300 text-black hover:border-black transition whitespace-nowrap" href="#home">HOME</a>
-      <a id="nav-about" class="nav-link px-4 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#about">ABOUT ME</a>
-      <a id="nav-experience" class="nav-link px-4 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#experience">EXPERIENCE</a>
-      <a id="nav-projects" class="nav-link px-4 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#projects">PROJECTS</a>
-      <a id="nav-landing-pages" class="nav-link px-4 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#landing-pages">LANDING PAGES</a>
-      <a id="nav-services" class="nav-link px-4 py-2 rounded-full border border-transparent hover:border-neutral-200 hover:text-black transition whitespace-nowrap" href="#services">SERVICES</a>
-    </nav>
+    <!-- Navigation -->
+    <header class="relative z-30 w-full px-6 lg:px-[3.25vw] pt-6 lg:pt-[2.2vw] flex items-center justify-between gap-4" data-purpose="site-navigation">
+      <div class="flex items-center gap-[2.4vw]">
+        <a href="#home" class="font-extrabold text-[0.95rem] sm:text-base lg:text-[1.45vw] xl:text-[1.4rem] tracking-[0.06em] text-black whitespace-nowrap">SHALYA GAONKAR</a>
+        <span class="hidden lg:block w-[2px] h-10 bg-black"></span>
+      </div>
 
-    <!-- Right Social & Menu Links -->
-    <div class="flex items-center gap-1.5 md:gap-2 p-1.5 bg-white/95 border border-[#E2E2E2] rounded-full shadow-sm">
-      <!-- Instagram -->
-      <a class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-neutral-100 transition text-neutral-700 hover:text-black" href="https://www.instagram.com/echo__builds/" target="_blank" rel="noopener" title="Instagram">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect height="18" rx="5" ry="5" width="18" x="3" y="3"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
-      </a>
+      <nav class="hidden lg:flex items-center gap-[1.2vw] xl:gap-5 text-[0.95vw] xl:text-[0.95rem] font-medium text-black">
+        <a id="nav-home" class="nav-link nav-active px-[1.8vw] py-[0.75vw] rounded-full transition whitespace-nowrap" href="#home">HOME</a>
+        <a id="nav-about" class="nav-link px-[1.1vw] py-[0.75vw] rounded-full transition whitespace-nowrap" href="#about">ABOUT ME</a>
+        <a id="nav-experience" class="nav-link px-[1.1vw] py-[0.75vw] rounded-full transition whitespace-nowrap" href="#experience">EXPERIENCE</a>
+        <a id="nav-projects" class="nav-link px-[1.1vw] py-[0.75vw] rounded-full transition whitespace-nowrap" href="#projects">PROJECTS</a>
+        <a id="nav-services" class="nav-link px-[1.1vw] py-[0.75vw] rounded-full transition whitespace-nowrap" href="#skills">SKILLS</a>
+        <a id="nav-contact" class="nav-link px-[1.1vw] py-[0.75vw] rounded-full transition whitespace-nowrap" href="#contact">CONTACT</a>
+      </nav>
 
-      <!-- Twitter / X -->
-      <a class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-neutral-100 transition text-neutral-700 hover:text-black" href="https://x.com/Jishn8m" target="_blank" rel="noopener" title="Twitter">
-        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      </a>
+      <div class="flex items-center gap-2 lg:gap-[2.2vw]">
+        <span class="hidden lg:block w-[2px] h-10 bg-black mr-[0.6vw]"></span>
+        <a class="hero-icon" href="https://github.com/shalyagaonkar520-web" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        </a>
+        <a class="hero-icon" href="https://www.linkedin.com/in/shalya-gaonkar-740196254" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        </a>
+        <a class="hero-icon hidden sm:inline-flex" href="mailto:shalyagaonkar@gmail.com" title="Email" aria-label="Email">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="hero-icon hidden sm:inline-flex" href="tel:+917483187572" title="Call" aria-label="Phone">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.36 11.36 0 0 0 3.58.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
+        </a>
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open Menu" class="lg:hidden w-9 h-9 rounded-full flex items-center justify-center bg-black text-white ml-1">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="4" x2="20" y1="7" y2="7"></line><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="17" y2="17"></line></svg>
+        </button>
+      </div>
+    </header>
 
-      <!-- LinkedIn -->
-      <a class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-neutral-100 transition text-neutral-700 hover:text-black" href="https://www.linkedin.com/in/jishnu-mondal/" target="_blank" rel="noopener" title="LinkedIn">
-        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-      </a>
+    <!-- Left: headline + identity -->
+    <div class="relative z-10 px-6 lg:px-[3.25vw] pt-12 lg:pt-0 lg:absolute lg:left-0 lg:top-[31.5%] select-none">
+      <h1 id="hero-title" class="font-extrabold uppercase leading-[0.95] lg:leading-[0.9] tracking-[-0.02em] text-[11.2vw] lg:text-[7.6vw]">
+        <span class="block text-[#0A0A0A]">EXPLORE MY</span>
+        <span class="block metallic-title pb-[0.08em]">PORTFOLIO</span>
+      </h1>
 
-      <!-- GitHub -->
-      <a class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-neutral-100 transition text-neutral-700 hover:text-black" href="https://github.com/Jishnu09-siuu" target="_blank" rel="noopener" title="GitHub">
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-      </a>
-
-      <!-- Mobile Hamburger Button -->
-      <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open Menu" class="md:hidden w-8 h-8 rounded-full flex items-center justify-center hover:bg-neutral-100 transition text-neutral-700 ml-1">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="4" x2="20" y1="7" y2="7"></line><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="17" y2="17"></line></svg>
-      </button>
+      <div class="mt-8 lg:mt-[4.2vw]">
+        <p class="font-semibold uppercase text-black tracking-[0.3em] sm:tracking-[0.42em] text-base sm:text-lg lg:text-[2.05vw] leading-none">ER. SHALYA GAONKAR</p>
+        <p class="mt-4 lg:mt-[1.4vw] font-medium uppercase text-neutral-800 tracking-[0.42em] text-xs lg:text-[1.1vw]">AI PRODUCT DEVELOPER</p>
+        <span class="block mt-5 lg:mt-[1.5vw] h-[2px] w-24 lg:w-[6.4vw] bg-black"></span>
+        <!-- Venom button (exteestudio, MIT): the goo renders in a transparent frame around the pill -->
+        <div class="venom-slot mt-7 lg:mt-[2vw]">
+          <iframe class="venom-frame" data-src="venom-button.html?id=hero&amp;label=let%E2%80%99s%20collaborate" title="Let's collaborate" loading="eager"></iframe>
+        </div>
+      </div>
     </div>
-  </header>
+
+    <!-- Right: tagline -->
+    <div class="relative z-10 px-6 lg:px-0 mt-10 lg:mt-0 lg:absolute lg:right-[3vw] lg:top-[45.3%]">
+      <div class="border-l-2 border-black pl-[1.1rem] lg:pl-[1.1vw]">
+        <p class="text-base lg:text-[1.17vw] leading-snug text-neutral-900">Building intelligent solutions<br>for a smarter tomorrow.</p>
+      </div>
+      <p class="mt-4 lg:mt-[2vw] lg:pl-[1.1vw] text-xs lg:text-[0.95vw] tracking-[0.22em] font-medium text-neutral-900">LEARN &nbsp;•&nbsp; BUILD &nbsp;•&nbsp; GROW</p>
+    </div>
+
+    <!-- Mobile / tablet portrait -->
+    <img src="assets/hero_shalya.jpg" alt="Portrait of Shalya Gaonkar"
+         class="lg:hidden relative mt-10 w-full aspect-[4/5] sm:aspect-[16/11] object-cover object-[74%_center] select-none">
+
+    <!-- Footer marks -->
+    <span class="absolute z-10 right-6 lg:right-[2.9vw] bottom-6 lg:bottom-[5.2%] text-xs lg:text-[1vw] tracking-[0.18em] font-medium text-white">BENGALURU, INDIA</span>
+  </main>
+  <!-- END: Hero Section -->
 
   <!-- Mobile Drawer Menu -->
   <div id="mobile-drawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 flex justify-end">
     <div id="mobile-drawer-content" class="w-4/5 max-w-sm bg-white h-full p-8 flex flex-col justify-between transform translate-x-full transition-transform duration-300 shadow-2xl">
       <div>
         <div class="flex items-center justify-between pb-6 border-b border-neutral-200">
-          <span class="font-extrabold text-lg tracking-tight">ECHO•</span>
-          <button onclick="toggleMobileMenu()" class="w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-neutral-700 hover:border-black">
-            ✕
-          </button>
+          <span class="font-extrabold text-lg tracking-[0.06em]">SHALYA GAONKAR</span>
+          <button onclick="toggleMobileMenu()" aria-label="Close Menu" class="w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-neutral-700 hover:border-black">✕</button>
         </div>
         <nav class="flex flex-col gap-4 mt-8 text-base font-bold tracking-wider">
           <a onclick="toggleMobileMenu()" href="#home" class="py-2 border-b border-neutral-100 hover:text-neutral-500">HOME</a>
           <a onclick="toggleMobileMenu()" href="#about" class="py-2 border-b border-neutral-100 hover:text-neutral-500">ABOUT ME</a>
           <a onclick="toggleMobileMenu()" href="#experience" class="py-2 border-b border-neutral-100 hover:text-neutral-500">EXPERIENCE</a>
           <a onclick="toggleMobileMenu()" href="#projects" class="py-2 border-b border-neutral-100 hover:text-neutral-500">PROJECTS</a>
-          <a onclick="toggleMobileMenu()" href="#landing-pages" class="py-2 border-b border-neutral-100 hover:text-neutral-500">LANDING PAGES</a>
-          <a onclick="toggleMobileMenu()" href="#services" class="py-2 border-b border-neutral-100 hover:text-neutral-500">SERVICES</a>
-          <a onclick="toggleMobileMenu(); openContactModal();" href="javascript:void(0)" class="py-2 text-black hover:underline">CONTACT</a>
+          <a onclick="toggleMobileMenu()" href="#skills" class="py-2 border-b border-neutral-100 hover:text-neutral-500">SKILLS</a>
+          <a onclick="toggleMobileMenu()" href="#contact" class="py-2 text-black hover:underline">CONTACT</a>
         </nav>
       </div>
-      <div class="pt-6 border-t border-neutral-200">
-        <p class="text-xs uppercase tracking-widest text-neutral-400 mb-3">JISHNU MONDAL</p>
-        <p class="text-xs text-neutral-600">Freelance Designer & Developer</p>
+      <div class="pt-6 border-t border-neutral-200 space-y-1">
+        <p class="text-xs uppercase tracking-widest text-neutral-400 mb-2">AI PRODUCT DEVELOPER</p>
+        <a class="block text-xs text-neutral-700" href="mailto:shalyagaonkar@gmail.com">shalyagaonkar@gmail.com</a>
+        <a class="block text-xs text-neutral-700" href="tel:+917483187572">+91 74831 87572</a>
       </div>
     </div>
   </div>
-  <!-- END: Navigation -->
 
-  <!-- BEGIN: Hero Section -->
-  <main class="relative max-w-[1400px] mx-auto px-6 md:px-14 pt-6 md:pt-12 pb-20 overflow-hidden" data-purpose="hero-section" id="home">
-    <!-- Big Title Header -->
-    <div class="text-center w-full mb-6 md:mb-10 relative z-0 select-none">
-      <h1 id="hero-title" class="text-[9.5vw] md:text-[8rem] lg:text-[9.5rem] font-extrabold uppercase leading-[0.85] tracking-tight">
-        <span class="block">
-          <span class="text-[#121212]">EXPLORE MY</span>
-        </span>
-        <span class="block">
-          <span class="metallic-title">PORTFOLIO</span>
-        </span>
-      </h1>
+
+  <!-- BEGIN: AI Arsenal (cinematic, original WebGL scene) -->
+  <section id="universe" class="cine uni" aria-label="AI tools I build with">
+    <div class="uni-pin">
+      <canvas id="uni-canvas" class="uni-canvas" aria-hidden="true"></canvas>
+      <div class="cine-vig" aria-hidden="true"></div>
+      <div class="cine-grain" aria-hidden="true"></div>
+      <div class="uni-copy">
+        <p class="cine-k">02 — The arsenal</p>
+        <h2 class="cine-h">My AI<br><em>arsenal</em></h2>
+        <p class="cine-p">The AI tools I build with every day. Hover a cube to see what each one does for me.</p>
+      </div>
+      <ul class="cine-side l" aria-hidden="true"><li>Ideas</li><li>Prompt</li><li>Build</li><li>Ship</li></ul>
+      <ul class="cine-side r" aria-hidden="true"><li>Better</li><li>Products</li><li>A brighter</li><li>Tomorrow</li></ul>
+      <p class="cine-corner bl">Er. Shalya Gaonkar<br><span>AI Product Developer</span></p>
+      <p class="cine-corner br">Tools · Ideas<br>People · Impact</p>
+      <div id="uni-tip" class="uni-tip" aria-hidden="true"></div>
+      <ul class="sr-only"><li>Claude</li><li>ChatGPT</li><li>Gemini</li><li>Cursor</li><li>Copilot</li><li>Perplexity</li><li>n8n</li><li>Hugging Face</li><li>Midjourney</li><li>v0</li><li>Lovable</li><li>Ollama</li></ul>
+    </div>
+  </section>
+  <!-- END: AI Arsenal -->
+
+  <!-- BEGIN: Journey (cinematic timeline, cursor drives the clock) -->
+  <section id="journey" class="cine jr" aria-label="My journey">
+    <div class="jr-pin">
+      <div class="cine-vig" aria-hidden="true"></div>
+      <div class="cine-grain" aria-hidden="true"></div>
+      <div class="jr-copy l">
+        <p class="cine-k">03 — The journey</p>
+        <p class="jr-title">A<br>journey<br>through<br>time</p>
+        <ul><li>School</li><li>College</li><li>Engineering</li><li>Startups</li><li>Now</li></ul>
+      </div>
+      <p class="jr-copy r">Move the cursor<br>to travel<br><span>Same curiosity<br>a brighter tomorrow</span></p>
+      <div class="jr-stage">
+        <svg class="jr-svg" viewBox="0 0 1600 900" aria-hidden="true">
+          <defs>
+            <linearGradient id="jrBeamG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff3b30" stop-opacity=".05"/><stop offset="1" stop-color="#ff3b30" stop-opacity=".55"/></linearGradient>
+            <radialGradient id="jrPool" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ff5a2a" stop-opacity=".35"/><stop offset="1" stop-color="#ff5a2a" stop-opacity="0"/></radialGradient>
+            <filter id="jrGlow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <ellipse cx="800" cy="860" rx="520" ry="70" fill="url(#jrPool)"/>
+          <g class="jr-floor" fill="none" stroke="#ff6a3a">
+            <ellipse cx="800" cy="860" rx="300" ry="34"/><ellipse cx="800" cy="860" rx="470" ry="56"/><ellipse cx="800" cy="860" rx="660" ry="80"/>
+          </g>
+          <g class="jr-clock" transform="translate(800 150)">
+            <path class="jr-dial" d="M -300 0 A 300 300 0 0 1 300 0"/>
+            <line class="jr-tick big" x1="0" y1="-300" x2="0" y2="-284" transform="rotate(-90)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-87)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-84)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-81)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-78)"/><line class="jr-tick big" x1="0" y1="-300" x2="0" y2="-284" transform="rotate(-75)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-72)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-69)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-66)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-63)"/><line class="jr-tick big" x1="0" y1="-300" x2="0" y2="-284" transform="rotate(-60)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-57)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-54)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-51)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-48)"/><line class="jr-tick big" x1="0" y1="-300" x2="0" y2="-284" transform="rotate(-45)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-42)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-39)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-36)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-33)"/><line class="jr-tick big" x1="0" y1="-300" x2="0" y2="-284" transform="rotate(-30)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-27)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-24)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-21)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-18)"/><line class="jr-tick big" x1="0" y1="-300" x2="0" y2="-284" transform="rotate(-15)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-12)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-9)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-6)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(-3)"/><line class="jr-tick big" x1="0" y1="-300" x2="0" y2="-284" transform="rotate(0)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(3)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(6)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(9)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(12)"/><line class="jr-tick big" x1="0" y1="-300" x2="0" y2="-284" transform="rotate(15)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(18)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(21)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(24)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(27)"/><line class="jr-tick big" x1="0" y1="-300" x2="0" y2="-284" transform="rotate(30)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(33)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(36)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(39)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(42)"/><line class="jr-tick big" x1="0" y1="-300" x2="0" y2="-284" transform="rotate(45)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(48)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(51)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(54)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(57)"/><line class="jr-tick big" x1="0" y1="-300" x2="0" y2="-284" transform="rotate(60)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(63)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(66)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(69)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(72)"/><line class="jr-tick big" x1="0" y1="-300" x2="0" y2="-284" transform="rotate(75)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(78)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(81)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(84)"/><line class="jr-tick" x1="0" y1="-300" x2="0" y2="-292" transform="rotate(87)"/><line class="jr-tick big" x1="0" y1="-300" x2="0" y2="-284" transform="rotate(90)"/>
+          </g>
+          <polygon id="jr-beam" class="jr-beam" fill="url(#jrBeamG)"/>
+          <path id="jr-rail" class="jr-rail"/>
+          <circle class="jr-node" r="9"/><circle class="jr-node" r="9"/><circle class="jr-node" r="9"/><circle class="jr-node" r="9"/><circle class="jr-node" r="9"/>
+          <text class="jr-year" text-anchor="middle">≤ 2020</text><text class="jr-year" text-anchor="middle">2020 – 22</text><text class="jr-year" text-anchor="middle">2022 – 26</text><text class="jr-year" text-anchor="middle">2026</text><text class="jr-year" text-anchor="middle">2026 → now</text>
+          <line id="jr-hand2" class="jr-hand2" x1="800" y1="150" x2="800" y2="380"/>
+          <line id="jr-hand" class="jr-hand" x1="800" y1="150" x2="800" y2="420" filter="url(#jrGlow)"/>
+          <circle cx="800" cy="150" r="14" class="jr-pivot"/>
+        </svg>
+        
+        <button type="button" class="jr-card" style="--i:0"><span class="jr-when">≤ 2020</span><b>School</b><span class="jr-where">Mother Teresa School</span><span class="jr-what">The beginning. Schooling, and the first spark for computers.</span></button>
+        <button type="button" class="jr-card" style="--i:1"><span class="jr-when">2020 – 22</span><b>Pre-University</b><span class="jr-where">YTSS College</span><span class="jr-what">PU. Two years that pointed me toward engineering.</span></button>
+        <button type="button" class="jr-card" style="--i:2"><span class="jr-when">2022 – 26</span><b>B.E. Computer Science</b><span class="jr-where">SDM College · CS Department</span><span class="jr-what">Engineering in computer science. Where I started shipping real products.</span></button>
+        <button type="button" class="jr-card jr-card--startup" style="--i:3"><span class="jr-when">2026</span><b>Startups</b><span class="jr-where">Mintoo · Nirmaan Solutions</span><span class="jr-what">Founded two companies: Mintoo, a food delivery app live on Google Play, and Nirmaan Solutions, a studio building IT apps, games and websites.</span></button>
+        <button type="button" class="jr-card" style="--i:4"><span class="jr-when">2026 → now</span><b>AI Developer</b><span class="jr-where">Rooman Technologies</span><span class="jr-what">The next chapter. Building AI products end to end.</span></button>
+      </div>
+    </div>
+  </section>
+  <!-- END: Journey -->
+
+  <!-- BEGIN: Press (3D newspaper + hanging ID card) -->
+  <section id="roles" class="press" aria-label="Founder of Mintoo and AI Developer at Rooman">
+    <div class="press-pin">
+      <span class="press-label">In the news</span>
+      <div class="press-scene" id="press-scene">
+
+        <div class="paper-stage">
+          <div class="paper" id="press-paper">
+            <svg class="np-line" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
+              <path pathLength="1" d="M-20 150 C 180 120, 300 260, 250 360 S 120 520, 330 560 S 640 470, 560 620 S 420 820, 640 860 S 900 760, 1030 900"/>
+            </svg>
+
+            <header class="np-mast">
+              <small>Build 01<br>Commit #26</small>
+              <div class="np-title">The Dev Log</div>
+              <small style="text-align:right">Bengaluru<br>Edition</small>
+            </header>
+            <div class="np-strip"><span>Shipped to production</span><span>2026</span><span>Open source of truth</span></div>
+
+            <h2 class="np-head">Mintoo is live on the Play Store</h2>
+            <p class="np-deck">A food delivery app, a rider panel and a hotel dashboard, now in people’s pockets. Next up: AI products at Rooman.</p>
+
+            <div class="np-cols">
+              <article class="np-story">
+                <span class="np-kicker">Founder</span>
+                <h3>Mintoo goes live on the Play Store</h3>
+                <p>Shalya Gaonkar, <mark class="hl" data-from=".22" data-to=".40">Founder of Mintoo</mark>, launched a food delivery app with its own rider panel and hotel admin dashboard.</p>
+                <p>The app is live on Google Play, with a web app alongside it.</p>
+                <div class="np-box red" data-from=".30" data-to=".46">
+                  <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M2 4 L97 2 L98 96 L3 98 Z M2 4 L6 6"/></svg>
+                  <div class="np-big">Live</div>
+                  <div class="np-small">On Google Play · rider + hotel apps</div>
+                </div>
+                <span class="np-note red" data-from=".38" data-to=".48">built it from zero ✶</span>
+              </article>
+
+              <article class="np-story">
+                <span class="np-kicker">Now</span>
+                <h3>Joins Rooman Technologies to build AI</h3>
+                <p>He now works as <mark class="hl blue" data-from=".50" data-to=".68">AI Developer at Rooman</mark>, building AI products end to end, including the Rooman AI Interviewer and ModuleForge.</p>
+                <p>Based in Bengaluru, from 2026 to the present.</p>
+                <div class="np-box blue" data-from=".58" data-to=".74">
+                  <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 3 L98 4 L96 97 L2 96 Z M3 3 L7 5"/></svg>
+                  <div class="np-big">AI Dev</div>
+                  <div class="np-small">Rooman Technologies · 2026 — now</div>
+                </div>
+                <span class="np-note" data-from=".68" data-to=".80">still figuring things out →</span>
+              </article>
+            </div>
+
+            <article class="np-wide">
+              <span class="np-kicker">Also founded</span>
+              <div class="np-wide-row">
+                <div class="np-story">
+                  <h3>Nirmaan Solutions builds it all</h3>
+                  <p>As <mark class="hl amber" data-from=".70" data-to=".84">Founder of Nirmaan Solutions</mark>, Shalya runs a studio that creates IT applications, games and websites. Any kind of project, built end to end. <a class="np-link" href="https://nirmaansolutions.in" target="_blank" rel="noopener">nirmaansolutions.in ↗</a></p>
+                </div>
+                <div class="np-box amber" data-from=".76" data-to=".9">
+                  <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M2 3 L98 2 L97 97 L3 96 Z M2 3 L6 5"/></svg>
+                  <div class="np-big">Apps · Games · Web</div>
+                  <div class="np-small">IT applications, games &amp; websites</div>
+                </div>
+              </div>
+            </article>
+
+            <footer class="np-foot"><span>Shalya Gaonkar</span><span>Founder · AI Developer</span></footer>
+          </div>
+        </div>
+
+        <div class="idc-wrap" id="idc-wrap" aria-label="ID card">
+          <div class="idc-swing">
+            <div class="idc-sway">
+              <span class="idc-string"></span>
+              <span class="idc-clip"></span>
+              <div class="idc-tilt">
+                <div class="idc" id="idc">
+                  <div class="idc-top"><span><i></i><b>Shalya</b> · ID</span><span>2026</span></div>
+                  <div class="idc-photo">
+                    <img src="assets/id_shalya.jpg" alt="Shalya Gaonkar" loading="lazy">
+                    <span class="idc-name">Shalya Gaonkar</span>
+                  </div>
+                  <div class="idc-meta">
+                    <div class="idc-row"><span>Founder</span><b>Mintoo · Nirmaan</b></div>
+                    <div class="idc-row"><span>AI Developer</span><b>Rooman</b></div>
+                    <div class="idc-row"><span>College</span><b>SDM</b></div>
+                    <div class="idc-row"><span>Base</span><b>Bengaluru, IN</b></div>
+                    <div class="idc-row idc-mail"><span>Email</span><b>shalyagaonkar@gmail.com</b></div>
+                  </div>
+                  <div class="idc-shine"></div>
+                </div>
+              </div>
+              <div class="idc-chip c1" data-from=".28" data-to=".38"><span class="dot">▶</span><span>Mintoo<small>Founder</small></span></div>
+              <div class="idc-chip c2" data-from=".56" data-to=".66"><span class="dot">✦</span><span>Rooman<small>AI Developer</small></span></div>
+              <div class="idc-chip c3" data-from=".72" data-to=".82"><span class="dot">◆</span><span>Nirmaan<small>Founder</small></span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- END: Press -->
+
+  <!-- BEGIN: Skills (3D blueprint network) -->
+  <section id="skills" class="sk" aria-label="Skills">
+    <div class="sk-pin">
+      <canvas id="sk-canvas" class="sk-canvas" aria-hidden="true"></canvas>
+      <div id="sk-labels" class="sk-labels" aria-hidden="true"></div>
+
+      <header class="sk-top">
+        <span><b>SYS://</b>SKILLS</span>
+        <span id="sk-counter">28 NODES · 4 MODULES</span>
+      </header>
+
+      <div id="sk-intro" class="sk-intro">
+        <p class="sk-kicker">Learn · Build · Grow</p>
+        <h2 class="sk-title">Grown,<br>not built.</h2>
+        <p class="sk-sub">Every skill here came from shipping real products. Move the mouse to rotate the network. Scroll to mount each module.</p>
+      </div>
+
+      <aside id="sk-term" class="sk-term" aria-hidden="true">
+        <div class="sk-term-bar"><i></i><i></i><i></i><span>shalya@dev — ~/skills</span></div>
+        <pre id="sk-term-body" class="sk-term-body"></pre>
+      </aside>
+
+      <nav class="sk-steps" aria-label="Skill modules">
+        <button type="button" data-sk-step="0"><b>01</b> AI &amp; Product</button>
+        <button type="button" data-sk-step="1"><b>02</b> Frontend</button>
+        <button type="button" data-sk-step="2"><b>03</b> Backend</button>
+        <button type="button" data-sk-step="3"><b>04</b> Ship</button>
+      </nav>
+      <div class="sk-progress"><div id="sk-bar"></div></div>
     </div>
 
-    <!-- Center Headshot & Symmetrical Content Grid -->
-    <div class="relative grid grid-cols-1 md:grid-cols-12 items-center mt-2 md:-mt-6">
-      
-      <!-- Left Column: Designer info & Arrow -->
-      <div class="md:col-span-3 flex flex-col items-start md:items-start pl-2 md:pl-6 order-2 md:order-1 pt-6 md:pt-0">
-        <span class="text-xs font-bold tracking-wider uppercase text-neutral-800 mb-6">DESIGNER EST.2000</span>
-        <a class="circle-btn w-14 h-14 md:w-16 md:h-16 border-neutral-300" href="#about" aria-label="Scroll to About Section">
-          <svg class="w-5 h-5 text-neutral-800 transform rotate-45" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-            <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </a>
-      </div>
-
-      <!-- Center Column: Stylized Black and White Headshot (in front of text) -->
-      <div class="md:col-span-6 flex justify-center order-1 md:order-2 relative z-10 -mt-16 md:-mt-36">
-        <div class="relative w-[320px] h-[400px] md:w-[480px] md:h-[580px] flex items-end justify-center hero-portrait-mask">
-          <img src="assets/hero_portrait.png" 
-               alt="Jishnu Mondal — Developer & Designer" 
-               class="w-full h-full object-contain object-bottom pointer-events-none select-none transition-transform duration-700 hover:scale-[1.02]"
-               onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuCcazn9gQbymIOQnywium-Vsjyj8kV2UoFlH63M0RX3nV0Z_2LZD-rugA9K0ORrfrFxJEkOBrlAyB0HWB8cm7KhZp-5sNgQuhXyGzJ9WmwvjEDhYw_g3BAr4A9j5phGh8JE5Rka_2e_B_o51jY55CQt5wfTPsFDGRvU2gaHKRu4gOOZD_FnQOszLiRDTh3La-RZzzHeFwfFY3XPZ9ikMq55oZ_xP2A95rzfUQE8WkHuIogtKLU-9zuSV9QywgCsVw4Btw'">
-        </div>
-      </div>
-
-      <!-- Right Column: Pitch and Disciplines -->
-      <div class="md:col-span-3 flex flex-col items-start md:items-end text-left order-3 pt-6 md:pt-0 pr-2 md:pr-6 space-y-10">
-        <!-- Pitch Quote -->
-        <p class="text-[11px] md:text-xs uppercase font-medium leading-relaxed tracking-wider text-neutral-700 max-w-[220px] text-left">
-          I AM PASSIONATE ABOUT CREATING WEBSITES THAT STAND OUT FROM THE CROWD.
-        </p>
-
-        <!-- Service List with hover interaction -->
-        <div class="flex flex-col space-y-3 text-[11px] md:text-xs font-semibold tracking-widest text-neutral-600 uppercase">
-          <a href="#services" onclick="selectService(0)" class="hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5">
-            <span>UI/UX</span>
-          </a>
-          <a href="#services" onclick="selectService(1)" class="hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5">
-            <span>WEB DESIGN</span>
-          </a>
-          <a href="#services" onclick="selectService(2)" class="hover:text-black hover:translate-x-1 md:hover:-translate-x-1 transition-all inline-flex items-center gap-1.5 font-bold text-black">
-            <span>LANDING PAGE</span>
-          </a>
-        </div>
-      </div>
-
+    <div class="sr-only">
+      <h3>AI &amp; Product</h3><p>AI Product Development, AI Interview Systems, Tools for AI Coding Agents, Google AI Studio, Product Thinking, Rapid Prototyping</p>
+      <h3>Frontend</h3><p>React, TypeScript, JavaScript, Vite, Tailwind CSS, HTML &amp; CSS, Leaflet Maps, Three.js</p>
+      <h3>Backend &amp; Real-time</h3><p>Node.js, Express, Socket.IO, Python, Firebase Auth &amp; Firestore, REST &amp; OpenAPI, Live GPS Dispatch</p>
+      <h3>Deploy &amp; Ship</h3><p>Vercel, Railway, Docker, Git &amp; GitHub, Monorepos, Automated Testing, Android App Builds</p>
     </div>
-  </main>
-  <!-- END: Hero Section -->
+  </section>
+  <!-- END: Skills -->
 
   <!-- BEGIN: About Section (ScrollExpandMedia Component) -->
   <section class="relative w-full bg-[#0D0D0D] text-white" id="about" style="min-height: 200vh;">
@@ -367,7 +604,7 @@
               <img
                 id="sem-media-img"
                 src="assets/about_floating_light_hq.png?v=14"
-                alt="Jishnu Mondal - Ascendance &amp; Digital Craft"
+                alt="Shalya Gaonkar — About"
                 class="w-full h-full object-cover rounded-xl transition-none"
                 style="transform: scale(1.02) translateZ(0); transform-origin: center; backface-visibility: hidden;"
               />
@@ -391,15 +628,28 @@
                 <!-- Top Perimeter: Refined Monochrome Headline -->
                 <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-white/10 pb-3">
                   <h3 class="text-xs sm:text-sm md:text-base font-extrabold uppercase tracking-tight text-white max-w-xl">
-                    TURNING VISIONARY IDEAS INTO FAST, DISTINCTIVE DIGITAL EXPERIENCES
+                    BUILDING INTELLIGENT SOLUTIONS FOR A SMARTER TOMORROW
                   </h3>
                   <span class="text-[10px] font-mono tracking-wider uppercase text-neutral-400 shrink-0">
-                    BASED IN INDIA &bull; WORLDWIDE
+                    BENGALURU, INDIA
                   </span>
                 </div>
 
                 <!-- Center Zone: COMPLETELY OPEN & EMPTY - 100% unobscured view of artwork -->
-                <div class="flex-1 pointer-events-none min-h-[140px] md:min-h-[200px]"></div>
+                <div class="about-mid flex-1 min-h-0 pointer-events-none">
+                  <div class="about-panel about-spec">
+                    <p class="about-k">Spec sheet <span>// v2026</span></p>
+                    <dl><div class="about-row"><dt>Name</dt><dd>Shalya Gaonkar</dd></div><div class="about-row"><dt>Age</dt><dd>22</dd></div><div class="about-row"><dt>Height</dt><dd>6′1″</dd></div><div class="about-row"><dt>Base</dt><dd>Bengaluru, India</dd></div><div class="about-row"><dt>Education</dt><dd>B.E. (CS/IT), 2026</dd></div><div class="about-row"><dt>College</dt><dd>SDM</dd></div><div class="about-row"><dt>Role</dt><dd>AI Developer, Rooman</dd></div><div class="about-row"><dt>Founder</dt><dd>Mintoo · Nirmaan Solutions</dd></div><div class="about-row"><dt>Stack</dt><dd>TypeScript · Python · React · Node</dd></div><div class="about-row"><dt>Shipped</dt><dd>21 repos · 820+ commits</dd></div><div class="about-row"><dt>Goal</dt><dd>Build innovative solutions, grow globally</dd></div></dl>
+                  </div>
+                  <div class="about-gap" aria-hidden="true"></div>
+                  <div class="about-panel about-bio">
+                    <p class="about-k">Who I am</p>
+                    <p>A passionate developer and problem solver. I'm always exploring new technologies, building useful products and pushing myself to get better: physically, mentally and professionally.</p>
+                    <p>I take ideas from a rough sketch to a deployed product. I shape the problem, build the first version fast, then add the AI features that make it smarter. Right now that means building AI products at Rooman Technologies, while running Mintoo, my food delivery app, and Nirmaan Solutions, my studio for IT apps, games and websites.</p>
+                    <p class="about-k mt">Outside the code</p>
+                    <ul class="about-chips"><li>Fitness</li><li>Tech &amp; AI</li><li>Travel</li><li>Food</li><li>Gaming</li></ul>
+                  </div>
+                </div>
 
                 <!-- Bottom Perimeter: Disciplines, About Summary & Monochrome CTAs -->
                 <div class="pt-3 border-t border-white/10 flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -408,24 +658,17 @@
                     <div class="flex items-center gap-2.5">
                       <span class="text-[10px] font-bold tracking-widest uppercase text-neutral-300">DISCIPLINE &amp; CRAFT</span>
                       <div class="h-px bg-white/15 w-6"></div>
-                      <span class="text-[10px] font-mono tracking-widest uppercase text-neutral-400">UI/UX &bull; WEB DESIGN &bull; WEBFLOW &bull; FIGMA</span>
+                      <span class="text-[10px] font-mono tracking-widest uppercase text-neutral-400">AI PRODUCTS &bull; FULL-STACK WEB &bull; TYPESCRIPT &bull; PYTHON</span>
                     </div>
                     <p class="text-xs sm:text-[12px] font-medium leading-relaxed tracking-wider uppercase text-neutral-300">
-                      I SPECIALIZE IN BUILDING BESPOKE DIGITAL PRODUCTS WHERE PURPOSEFUL EDITORIAL DESIGN MEETS ROBUST ENGINEERING. CREATING EXPERIENCES WITH INTENTIONAL MOTION, SYSTEMATIC RIGOR, AND MEASURABLE IMPACT.
+                      I'M SHALYA GAONKAR, AN AI PRODUCT DEVELOPER FROM BENGALURU. 21 REPOSITORIES AND 820+ COMMITS, FROM FIRST IDEA TO DEPLOYED PRODUCT. LEARN, BUILD, GROW.
                     </p>
                   </div>
 
                   <!-- Monochrome Action Buttons -->
                   <div class="flex items-center gap-3 shrink-0 pt-1 md:pt-0">
-                    <a href="javascript:void(0)" onclick="openContactModal()" class="pointer-events-auto px-5 py-2.5 rounded-full bg-white text-black hover:bg-neutral-200 text-xs font-bold tracking-wider uppercase transition-all duration-200 inline-flex items-center gap-2">
-                      <span>GET IN TOUCH</span>
-                      <svg class="w-3.5 h-3.5 text-black" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
-                      </svg>
-                    </a>
-                    <a href="#services" class="pointer-events-auto px-5 py-2.5 rounded-full border border-neutral-500 hover:border-white text-white text-xs font-bold tracking-wider uppercase transition-all duration-200">
-                      SERVICES
-                    </a>
+                    <span class="vbtn" style="--w:180px"><iframe class="venom-frame" data-src="venom-button.html?id=touch&amp;label=get%20in%20touch" title="get in touch" loading="lazy"></iframe></span>
+                    <span class="vbtn" style="--w:120px"><iframe class="venom-frame" data-src="venom-button.html?id=skills&amp;label=skills" title="skills" loading="lazy"></iframe></span>
                   </div>
                 </div>
               </div>
@@ -481,11 +724,11 @@
       <div class="absolute inset-0 flex flex-col justify-around pointer-events-none overflow-hidden opacity-[0.035]">
         <!-- Upper Ticker (Drifting Left) -->
         <div id="exp-ticker-top" class="whitespace-nowrap font-black uppercase text-[14vw] tracking-tighter will-change-transform leading-none">
-          CREATIVE TECHNOLOGIST &nbsp;&nbsp; FULL STACK ARCHITECTURE &nbsp;&nbsp; CREATIVE TECHNOLOGIST &nbsp;&nbsp; FULL STACK ARCHITECTURE &nbsp;&nbsp;
+          AI PRODUCT DEVELOPER &nbsp;&nbsp; FULL STACK BUILDS &nbsp;&nbsp; AI PRODUCT DEVELOPER &nbsp;&nbsp; FULL STACK BUILDS &nbsp;&nbsp;
         </div>
         <!-- Lower Ticker (Drifting Right) -->
         <div id="exp-ticker-bottom" class="whitespace-nowrap font-black uppercase text-[14vw] tracking-tighter will-change-transform leading-none">
-          2023 &nbsp;&nbsp; SELF-DIRECTED LEARNING &nbsp;&nbsp; 2026 &nbsp;&nbsp; FREELANCE SYSTEMS &nbsp;&nbsp; 2023 &nbsp;&nbsp; SELF-DIRECTED LEARNING &nbsp;&nbsp;
+          LEARN &nbsp;&nbsp; BUILD &nbsp;&nbsp; GROW &nbsp;&nbsp; BENGALURU &nbsp;&nbsp; 2026 &nbsp;&nbsp; LEARN &nbsp;&nbsp; BUILD &nbsp;&nbsp; GROW &nbsp;&nbsp;
         </div>
       </div>
 
@@ -493,7 +736,7 @@
       <header class="relative z-30 w-full px-6 md:px-14 pt-6 pb-4 flex items-center justify-between border-b border-white/[0.08] backdrop-blur-md bg-[#070709]/80">
         <div class="flex items-center gap-4">
           <span id="exp-hud-phase" class="text-[11px] font-semibold tracking-widest uppercase text-neutral-400">
-            SELF-DIRECTED LEARNING
+            LEARN • BUILD • GROW
           </span>
         </div>
 
@@ -522,7 +765,7 @@
                 WHERE<br>I'VE BEEN
               </h2>
               <p class="text-base sm:text-lg md:text-xl text-neutral-300 leading-relaxed max-w-xl font-normal">
-                My professional journey through different roles and environments.
+                From first commits to full products — what I have been building in 2026.
               </p>
             </div>
           </div>
@@ -534,44 +777,44 @@
               class="exp-date-bg absolute -top-8 right-12 md:right-28 text-[12vw] md:text-[14vw] font-black uppercase text-white/[0.04] tracking-tighter select-none pointer-events-none will-change-transform"
               data-parallax-factor="0.15"
             >
-              2023 — 2025
+              JUN — JUL 2026
             </div>
 
             <div class="relative z-10 max-w-4xl">
               <!-- Eyebrow & Date -->
               <div class="flex items-center gap-4 mb-4">
                 <span class="text-xs font-semibold tracking-widest uppercase text-neutral-400">
-                  2023 — 2025
+                  JUN — JUL 2026
                 </span>
                 <span class="h-[1px] w-12 bg-white/20"></span>
                 <span class="text-xs font-bold tracking-widest uppercase text-white">
-                  SELF-DIRECTED LEARNING
+                  HOSPITALITY &amp; COMMERCE
                 </span>
               </div>
 
               <!-- Oversized Typographic Role Title -->
               <h3 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-white leading-[0.92] mb-6">
-                CREATIVE<br>TECHNOLOGIST
+                FULL-STACK<br>WEB BUILDS
               </h3>
 
               <!-- Narrative Summary -->
               <p class="text-sm sm:text-base md:text-lg text-neutral-300 leading-relaxed max-w-2xl mb-8">
-                Intensive self-education period exploring web technologies, creative coding, and modern development practices.
+                Shipped TypeScript web apps for real businesses — homestay booking, food delivery and restaurant dashboards — taking each from idea to a deployed site.
               </p>
 
               <!-- Milestone Specifications (Hairline Grid) -->
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-white/10 max-w-3xl mb-8">
                 <div>
                   <div class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-1.5">MILESTONE 01</div>
-                  <div class="text-xs sm:text-sm text-neutral-200 font-medium leading-snug">Completed 500+ hours of hands-on development</div>
+                  <div class="text-xs sm:text-sm text-neutral-200 font-medium leading-snug">Malanadu Stay homestay booking site live on Vercel</div>
                 </div>
                 <div>
                   <div class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-1.5">MILESTONE 02</div>
-                  <div class="text-xs sm:text-sm text-neutral-200 font-medium leading-snug">Mastered React, Node.js, and TypeScript ecosystem</div>
+                  <div class="text-xs sm:text-sm text-neutral-200 font-medium leading-snug">Mintoo food delivery app, live on Google Play</div>
                 </div>
                 <div>
                   <div class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-1.5">MILESTONE 03</div>
-                  <div class="text-xs sm:text-sm text-neutral-200 font-medium leading-snug">Built portfolio of 15+ production-ready projects</div>
+                  <div class="text-xs sm:text-sm text-neutral-200 font-medium leading-snug">Minto rider panel + hotel admin dashboard</div>
                 </div>
               </div>
             </div>
@@ -584,47 +827,47 @@
               class="exp-date-bg absolute -top-8 right-12 md:right-28 text-[12vw] md:text-[14vw] font-black uppercase text-white/[0.04] tracking-tighter select-none pointer-events-none will-change-transform"
               data-parallax-factor="0.15"
             >
-              2026 — PRESENT
+              AUG 2026 — PRESENT
             </div>
 
             <div class="relative z-10 max-w-4xl">
               <!-- Eyebrow & Date -->
               <div class="flex items-center gap-4 mb-4">
                 <span class="text-xs font-semibold tracking-widest uppercase text-neutral-400">
-                  2026 — PRESENT
+                  AUG 2026 — PRESENT
                 </span>
                 <span class="h-[1px] w-12 bg-white/20"></span>
                 <span class="text-xs font-bold tracking-widest uppercase text-white">
-                  FREELANCE / INDEPENDENT
+                  PRODUCTS &amp; AI
                 </span>
                 <span class="hidden sm:inline-flex items-center px-2.5 py-0.5 rounded-full border border-white/20 text-[10px] font-semibold uppercase text-neutral-300">
-                  COMMERCIAL
+                  CURRENT
                 </span>
               </div>
 
               <!-- Oversized Typographic Role Title -->
               <h3 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight text-white leading-[0.92] mb-6">
-                FULL STACK<br>DEVELOPER
+                AI PRODUCT<br>DEVELOPER
               </h3>
 
               <!-- Narrative Summary -->
               <p class="text-sm sm:text-base md:text-lg text-neutral-300 leading-relaxed max-w-2xl mb-8">
-                Building premium web experiences for clients worldwide. Specializing in interactive frontends, scalable backends, and AI-powered applications.
+                Building AI products end to end — the Rooman AI Interviewer, ModuleForge for AI coding agents, the NexRide ride-hailing platform and the Rooman One business suite.
               </p>
 
               <!-- Milestone Specifications (Hairline Grid) -->
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-white/10 max-w-3xl mb-8">
                 <div>
-                  <div class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-1.5">DELIVERY</div>
-                  <div class="text-xs sm:text-sm text-neutral-200 font-medium leading-snug">Delivered 20+ projects across diverse industries</div>
+                  <div class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-1.5">AI PRODUCTS</div>
+                  <div class="text-xs sm:text-sm text-neutral-200 font-medium leading-snug">Rooman AI Interviewer &amp; ModuleForge</div>
                 </div>
                 <div>
-                  <div class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-1.5">INFRASTRUCTURE</div>
-                  <div class="text-xs sm:text-sm text-neutral-200 font-medium leading-snug">Implemented CI/CD pipelines and cloud architecture</div>
+                  <div class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-1.5">PLATFORMS</div>
+                  <div class="text-xs sm:text-sm text-neutral-200 font-medium leading-snug">NexRide real-time ride-hailing &amp; CrewDay events</div>
                 </div>
                 <div>
-                  <div class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-1.5">MOTION SYSTEM</div>
-                  <div class="text-xs sm:text-sm text-neutral-200 font-medium leading-snug">Created custom animation systems with GSAP and Three.js</div>
+                  <div class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-1.5">OPEN SOURCE</div>
+                  <div class="text-xs sm:text-sm text-neutral-200 font-medium leading-snug">21 public repos across TypeScript, JavaScript &amp; Python</div>
                 </div>
               </div>
             </div>
@@ -642,14 +885,14 @@
             class="exp-jump-btn text-[11px] font-bold tracking-widest uppercase px-3 py-1 rounded-md border border-white/20 text-white bg-white/10 transition-all hover:bg-white/20"
             data-target-progress="0.30"
           >
-            LEARNING
+            WEB BUILDS
           </button>
           <button
             type="button"
             class="exp-jump-btn text-[11px] font-bold tracking-widest uppercase px-3 py-1 rounded-md border border-white/5 text-neutral-500 hover:text-white transition-all hover:border-white/20"
             data-target-progress="0.75"
           >
-            FREELANCE
+            PRODUCTS &amp; AI
           </button>
         </div>
       </footer>
@@ -657,53 +900,36 @@
   </section>
   <!-- END: Experience Section -->
 
-  <!-- BEGIN: Featured Project Section -->
-  <section class="max-w-[1400px] mx-auto px-6 md:px-14 py-16" data-purpose="featured-projects" id="projects">
-    <!-- Header -->
-    <div class="mb-8">
-      <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-neutral-900">
-        FEATURED PROJECT
-      </h2>
+  <!-- BEGIN: GitHub numbers (no project names) -->
+  <section class="max-w-[1400px] mx-auto px-6 md:px-14 py-24" data-purpose="github-stats" id="projects">
+    <p class="gh-kicker">GIT:// github.com/shalyagaonkar520-web</p>
+    <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tight text-neutral-900">Shipped in code</h2>
+    <p class="mt-4 max-w-xl text-base md:text-lg text-neutral-700">The numbers from my public GitHub, counted in November 2026. No names, just the work.</p>
+
+    <div class="gh-stats">
+      <div class="gh-stat"><b data-count="21">21</b><span>Projects built</span><small>public repositories</small></div>
+      <div class="gh-stat"><b data-count="820" data-suffix="+">820+</b><span>Commits pushed</span><small>across every project</small></div>
+      <div class="gh-stat"><b data-count="3">3</b><span>Languages</span><small>TypeScript · JavaScript · Python</small></div>
     </div>
 
-    <!-- Dynamic Projects Content Area with FlexCarousel -->
-    <div id="projects-content" class="w-full">
-      <div id="flex-carousel-container" class="rounded-3xl border border-neutral-200 bg-[#EFEFEF] overflow-hidden shadow-inner" style="width: 100%; height: 560px; position: relative;">
-        <!-- FlexCarousel mounts here -->
-      </div>
-    </div>
+    <figure class="gh-chart">
+      <figcaption><span>Commits per project</span><span>21 projects · largest first</span></figcaption>
+      <div class="gh-bars"><div class="gh-bar" style="--h:1.000" title="254 commits"><span>254</span></div><div class="gh-bar" style="--h:0.543" title="138 commits"><span>138</span></div><div class="gh-bar" style="--h:0.531" title="135 commits"><span>135</span></div><div class="gh-bar" style="--h:0.413" title="105 commits"><span>105</span></div><div class="gh-bar" style="--h:0.193" title="49 commits"><span>49</span></div><div class="gh-bar" style="--h:0.165" title="42 commits"><span>42</span></div><div class="gh-bar" style="--h:0.094" title="24 commits"><span>24</span></div><div class="gh-bar" style="--h:0.075" title="19 commits"><span>19</span></div><div class="gh-bar" style="--h:0.055" title="14 commits"><span>14</span></div><div class="gh-bar" style="--h:0.047" title="12 commits"><span>12</span></div><div class="gh-bar" style="--h:0.039" title="10 commits"><span>10</span></div><div class="gh-bar" style="--h:0.020" title="5 commits"><span>5</span></div><div class="gh-bar" style="--h:0.016" title="4 commits"><span>4</span></div><div class="gh-bar" style="--h:0.012" title="3 commits"><span>3</span></div><div class="gh-bar" style="--h:0.012" title="2 commits"><span>2</span></div><div class="gh-bar" style="--h:0.012" title="2 commits"><span>2</span></div><div class="gh-bar" style="--h:0.012" title="1 commits"><span>1</span></div><div class="gh-bar" style="--h:0.012" title="1 commits"><span>1</span></div><div class="gh-bar" style="--h:0.012" title="0 commits"><span>0</span></div><div class="gh-bar" style="--h:0.012" title="0 commits"><span>0</span></div><div class="gh-bar" style="--h:0.012" title="0 commits"><span>0</span></div></div>
+    </figure>
+
+    <div class="gh-cta"><span class="vbtn" style="--w:220px"><iframe class="venom-frame" data-src="venom-button.html?id=github&amp;label=see%20it%20on%20github" title="see it on github" loading="lazy"></iframe></span></div>
   </section>
-  <!-- END: Featured Project Section -->
-
-  <!-- BEGIN: Landing Pages Featured Projects (WorksWheel) Section -->
-  <section class="max-w-[1400px] mx-auto px-6 md:px-14 py-16" data-purpose="landing-pages-featured-projects" id="landing-pages">
-    <!-- Header with Title -->
-    <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
-      <div>
-        <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-neutral-900">
-          LANDING PAGES
-        </h2>
-      </div>
-    </div>
-
-    <!-- WorksWheel 3D Container -->
-    <div class="w-full relative overflow-hidden" style="height: 640px; min-height: 520px;">
-      <div id="works-wheel-container" class="w-full h-full relative">
-        <!-- WorksWheel mounts here -->
-      </div>
-    </div>
-  </section>
-  <!-- END: Landing Pages Featured Projects Section -->
+  <!-- END: GitHub numbers -->
 
   <!-- BEGIN: Services Section -->
   <section class="max-w-[1400px] mx-auto px-6 md:px-14 py-20" data-purpose="services-section" id="services">
     <!-- Centered Header -->
     <div class="text-center max-w-2xl mx-auto mb-14">
       <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tight text-neutral-900 mb-4">
-        THE SERVICES WE PROVIDE
+        WHAT I BUILD
       </h2>
       <p class="text-xs md:text-xs uppercase font-medium leading-relaxed tracking-wider text-neutral-500">
-        CREATING VISUALLY APPEALING AND FUNCTIONAL WEBSITES TAILORED TO THE CLIENT'S NEEDS AND GOALS. PROVIDING A CONSISTENT USER EXPERIENCE ACROSS PLATFORMS.
+        AI PRODUCT DEVELOPMENT, FULL-STACK WEB APPLICATIONS AND PYTHON TOOLING — BUILT, DEPLOYED AND IMPROVED END TO END.
       </p>
     </div>
 
@@ -714,18 +940,18 @@
       <div id="service-0" onclick="toggleService(0)" class="accordion-item w-full flex flex-col px-6 py-4 rounded-3xl border border-neutral-300 bg-white hover:border-black transition-all cursor-pointer">
         <div class="flex items-center justify-between">
           <span class="item-badge w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-xs font-medium text-neutral-700">1</span>
-          <span class="item-title text-xs md:text-sm font-bold tracking-widest uppercase text-neutral-800">UI/UX</span>
+          <span class="item-title text-xs md:text-sm font-bold tracking-widest uppercase text-neutral-800">AI PRODUCT DEVELOPMENT</span>
           <div class="item-icon w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center transition-transform">
             <svg class="w-3.5 h-3.5 text-neutral-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           </div>
         </div>
         <div class="accordion-content">
           <p class="text-xs text-neutral-500 leading-relaxed max-w-2xl mb-4">
-            User research, wireframing, interactive prototyping, and usability validation. Transforming complex workflows into effortless, delightful digital experiences.
+            Turning ideas into working products: shaping the problem, building the first version fast, and adding intelligent features that make it smarter for users.
           </p>
           <div class="flex items-center justify-between border-t border-neutral-200 pt-3">
-            <span class="text-[11px] font-mono text-neutral-400">DELIVERABLES: USER FLOWS, WIREFRAMES, DESIGN TOKENS</span>
-            <button onclick="event.stopPropagation(); bookSpecificService('UI/UX Design');" class="text-xs font-bold underline hover:text-neutral-600">INQUIRE ↗</button>
+            <span class="text-[11px] font-mono text-neutral-400">FOCUS: PRODUCT THINKING, AI FEATURES, RAPID PROTOTYPING</span>
+            <span class="vbtn" style="--w:135px"><iframe class="venom-frame" data-src="venom-button.html?id=svc:AI%20Product%20Development&amp;label=inquire" title="inquire" loading="lazy"></iframe></span>
           </div>
         </div>
       </div>
@@ -734,18 +960,18 @@
       <div id="service-1" onclick="toggleService(1)" class="accordion-item w-full flex flex-col px-6 py-4 rounded-3xl border border-neutral-300 bg-white hover:border-black transition-all cursor-pointer">
         <div class="flex items-center justify-between">
           <span class="item-badge w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-xs font-medium text-neutral-700">2</span>
-          <span class="item-title text-xs md:text-sm font-bold tracking-widest uppercase text-neutral-800">WEB DESIGN</span>
+          <span class="item-title text-xs md:text-sm font-bold tracking-widest uppercase text-neutral-800">FULL-STACK WEB APPS</span>
           <div class="item-icon w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center transition-transform">
             <svg class="w-3.5 h-3.5 text-neutral-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           </div>
         </div>
         <div class="accordion-content">
           <p class="text-xs text-neutral-500 leading-relaxed max-w-2xl mb-4">
-            Bespoke web aesthetics with flawless responsive layouts, typography hierarchy, high-contrast dark modes, and crisp interactive animations.
+            Customer apps and admin dashboards — booking, food delivery, ride-hailing and events — with React, TypeScript, Node.js, Socket.IO and Firebase, deployed on Vercel and Railway.
           </p>
           <div class="flex items-center justify-between border-t border-neutral-200 pt-3">
-            <span class="text-[11px] font-mono text-neutral-400">DELIVERABLES: FULL RESPONSIVE WEB DESIGNS, FIGMA SYSTEM</span>
-            <button onclick="event.stopPropagation(); bookSpecificService('Web Design');" class="text-xs font-bold underline hover:text-neutral-600">INQUIRE ↗</button>
+            <span class="text-[11px] font-mono text-neutral-400">STACK: REACT, TYPESCRIPT, NODE.JS, SOCKET.IO, FIREBASE, TAILWIND</span>
+            <span class="vbtn" style="--w:135px"><iframe class="venom-frame" data-src="venom-button.html?id=svc:Full-Stack%20Web%20App&amp;label=inquire" title="inquire" loading="lazy"></iframe></span>
           </div>
         </div>
       </div>
@@ -754,18 +980,18 @@
       <div id="service-2" onclick="toggleService(2)" class="accordion-item active w-full flex flex-col px-6 py-4 rounded-3xl bg-black text-white shadow-xl cursor-pointer transition-all transform scale-[1.01]">
         <div class="flex items-center justify-between">
           <span class="item-badge w-8 h-8 rounded-full border border-neutral-700 flex items-center justify-center text-xs font-medium text-neutral-300">3</span>
-          <span class="item-title text-xs md:text-sm font-bold tracking-widest uppercase text-white">LANDING PAGE DESIGN</span>
+          <span class="item-title text-xs md:text-sm font-bold tracking-widest uppercase text-white">PYTHON &amp; PRODUCT ENGINEERING</span>
           <div class="item-icon w-8 h-8 rounded-full border border-neutral-700 flex items-center justify-center transition-transform rotate-90">
             <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           </div>
         </div>
         <div class="accordion-content">
           <p class="text-xs text-neutral-300 leading-relaxed max-w-2xl mb-4">
-            High-converting editorial landing pages tailored for startups, product launches, and personal brands. Engineered to capture attention and boost conversions.
+            Modular Python services like Rooman One — shared identity, versioned event contracts, Docker Compose stacks and documented architecture.
           </p>
           <div class="flex items-center justify-between border-t border-neutral-800 pt-3">
-            <span class="text-[11px] font-mono text-neutral-400">DELIVERABLES: COPYWRITING STRUCTURE, CUSTOM 3D/GRAPHICS, WEBFLOW CODE</span>
-            <button onclick="event.stopPropagation(); bookSpecificService('Landing Page Design');" class="text-xs font-bold underline text-white hover:text-neutral-300">INQUIRE ↗</button>
+            <span class="text-[11px] font-mono text-neutral-400">STACK: PYTHON, DOCKER, OPENAPI, MONOREPOS</span>
+            <span class="vbtn" style="--w:135px"><iframe class="venom-frame" data-src="venom-button.html?id=svc:Python&amp;label=inquire" title="inquire" loading="lazy"></iframe></span>
           </div>
         </div>
       </div>
@@ -786,28 +1012,22 @@
       </div>
 
       <!-- Action Button Pills -->
-      <div class="flex flex-wrap items-center justify-center gap-3.5 mt-8 mb-20">
-        <a class="px-6 py-2.5 rounded-full border border-neutral-700 hover:border-neutral-400 text-xs font-medium tracking-wider uppercase transition text-neutral-300 hover:text-white" href="https://www.instagram.com/echo__builds/" target="_blank" rel="noopener">
-          INSTAGRAM
-        </a>
-        <a class="px-6 py-2.5 rounded-full border border-neutral-700 hover:border-neutral-400 text-xs font-medium tracking-wider uppercase transition text-neutral-300 hover:text-white" href="https://x.com/Jishn8m" target="_blank" rel="noopener">
-          TWITTER
-        </a>
-        <a class="px-6 py-2.5 rounded-full border border-neutral-700 hover:border-neutral-400 text-xs font-medium tracking-wider uppercase transition text-neutral-300 hover:text-white" href="https://www.linkedin.com/in/jishnu-mondal/" target="_blank" rel="noopener">
-          LINKEDIN
-        </a>
-        <a class="px-6 py-2.5 rounded-full border border-neutral-700 hover:border-neutral-400 text-xs font-medium tracking-wider uppercase transition text-neutral-300 hover:text-white" href="https://github.com/Jishnu09-siuu" target="_blank" rel="noopener">
-          GITHUB
-        </a>
-        <button onclick="openContactModal()" class="px-7 py-2.5 rounded-full bg-white text-black hover:bg-neutral-200 text-xs font-bold tracking-wider uppercase transition transform hover:scale-105">
-          CONTACT ME
-        </button>
+      <div class="vrow">
+        <span class="vbtn" style="--w:305px"><iframe class="venom-frame" data-src="venom-button.html?id=email&amp;label=shalyagaonkar%40gmail.com" title="shalyagaonkar@gmail.com" loading="lazy"></iframe></span>
+        <span class="vbtn" style="--w:225px"><iframe class="venom-frame" data-src="venom-button.html?id=call&amp;label=%2B91%2074831%2087572" title="+91 74831 87572" loading="lazy"></iframe></span>
+        <span class="vbtn" style="--w:145px"><iframe class="venom-frame" data-src="venom-button.html?id=linkedin&amp;label=linkedin" title="linkedin" loading="lazy"></iframe></span>
+        <span class="vbtn" style="--w:124px"><iframe class="venom-frame" data-src="venom-button.html?id=github&amp;label=github" title="github" loading="lazy"></iframe></span>
+      </div>
+
+      <!-- Venom button: let's collaborate -->
+      <div class="venom-slot venom-slot--center -mt-6 mb-20">
+        <iframe class="venom-frame" data-src="venom-button.html?id=footer&amp;label=let%E2%80%99s%20collaborate" title="Let's collaborate" loading="lazy"></iframe>
       </div>
 
       <!-- Bottom Credits Bar -->
       <div class="w-full pt-8 border-t border-neutral-900 flex flex-col md:flex-row items-center justify-between text-[10px] tracking-widest uppercase text-neutral-600 font-semibold gap-4">
-        <div>PORTFOLIO. ALL RIGHTS RESERVED</div>
-        <div>DESIGN BY JISHNU MONDAL</div>
+        <div>© 2026 SHALYA GAONKAR · BENGALURU, INDIA</div>
+        <div>AI PRODUCT DEVELOPER</div>
       </div>
 
     </div>
@@ -849,14 +1069,13 @@
           <input type="email" id="contact-email" required placeholder="john@company.com" class="w-full px-4 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:border-black text-sm">
         </div>
         <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1">Service Required</label>
+          <label class="block text-xs font-bold uppercase tracking-wider text-neutral-700 mb-1">Topic</label>
           <select id="contact-service" class="w-full px-4 py-2.5 rounded-xl border border-neutral-300 focus:outline-none focus:border-black text-sm bg-white">
-            <option value="Landing Page Design">Landing Page Design</option>
-            <option value="UI/UX Design">UI/UX Design</option>
-            <option value="Web Design">Web Design</option>
-            <option value="Mobile App Design">Mobile App Design</option>
-            <option value="UI Design Figma">UI Design Figma</option>
-            <option value="Other">Other / Full Project</option>
+            <option value="AI Product Development">AI Product Development</option>
+            <option value="Full-Stack Web App">Full-Stack Web App</option>
+            <option value="Python">Python / Backend</option>
+            <option value="Job Opportunity">Job / Internship Opportunity</option>
+            <option value="Other">Other</option>
           </select>
         </div>
         <div>
@@ -1137,9 +1356,14 @@
     function submitContactForm(e) {
       e.preventDefault();
       const name = document.getElementById('contact-name').value;
+      const email = document.getElementById('contact-email').value;
       const service = document.getElementById('contact-service').value;
+      const message = document.getElementById('contact-message').value;
+      const subject = encodeURIComponent(`Portfolio enquiry: ${service}`);
+      const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+      window.location.href = `mailto:shalyagaonkar@gmail.com?subject=${subject}&body=${body}`;
       closeContactModal();
-      showToast(`Thank you, ${name}! Your inquiry for "${service}" has been received.`);
+      showToast(`Thanks, ${name}! Your email app is opening so you can send the message.`);
       document.getElementById('contact-form').reset();
     }
 
@@ -1283,30 +1507,22 @@
     // Initialize application
     function initApp() {
 
-      const sections = document.querySelectorAll('section[id], main[id]');
+      const sections = document.querySelectorAll('section[id], main[id], footer[id]');
       const navLinks = {
         'home': document.getElementById('nav-home'),
         'about': document.getElementById('nav-about'),
         'experience': document.getElementById('nav-experience'),
         'projects': document.getElementById('nav-projects'),
-        'services': document.getElementById('nav-services')
+        'skills': document.getElementById('nav-services'),
+        'contact': document.getElementById('nav-contact')
       };
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const id = entry.target.getAttribute('id');
-            Object.keys(navLinks).forEach(k => {
-              if (navLinks[k]) {
-                if (k === id) {
-                  navLinks[k].classList.add('border-neutral-300', 'text-black');
-                  navLinks[k].classList.remove('border-transparent', 'text-neutral-600');
-                } else {
-                  navLinks[k].classList.remove('border-neutral-300', 'text-black');
-                  navLinks[k].classList.add('border-transparent', 'text-neutral-600');
-                }
-              }
-            });
+            if (!navLinks[id]) return;
+            Object.keys(navLinks).forEach(k => navLinks[k] && navLinks[k].classList.toggle('nav-active', k === id));
           }
         });
       }, { rootMargin: '-20% 0px -60% 0px' });
@@ -1321,71 +1537,14 @@
     }
   </script>
 
-  <!-- FlexCarousel Initialization (React Bits Component Engine) -->
-  <script type="module">
-    import { initFlexCarousel, DEFAULT_ITEMS } from './flex-carousel.js';
 
-    function startCarousel() {
-      const container = document.getElementById('flex-carousel-container');
-      if (container) {
-        window.flexCarouselInstance = initFlexCarousel(container, {
-          items: DEFAULT_ITEMS,
-          preset: 'liquid',
-          intro: 'rise',
-          cardHeight: 0.5,
-          gap: 12,
-          squeeze: 0.2,
-          focusOnClick: true,
-          captions: true,
-          onSelect: (index, item) => {
-            if (window.openProjectModal) {
-              window.openProjectModal(item);
-            }
-          }
-        });
-      }
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', startCarousel);
-    } else {
-      startCarousel();
-    }
-  </script>
-
-  <!-- WorksWheel 3D Drum Reel Initialization -->
-  <script type="module">
-    import { initWorksWheel, DEFAULT_WORKS } from './works-wheel.js';
-
-    function startWorksWheel() {
-      const container = document.getElementById('works-wheel-container');
-      if (container) {
-        const wheelInstance = initWorksWheel(container, {
-          items: DEFAULT_WORKS,
-          label: "Works '26",
-          action: "View",
-          onSelect: (index, item) => {
-            if (window.openProjectModal) {
-              window.openProjectModal(item);
-            }
-          }
-        });
-        window.worksWheelInstance = wheelInstance;
-
-        const prevBtn = document.getElementById('works-wheel-prev-btn');
-        const nextBtn = document.getElementById('works-wheel-next-btn');
-        if (prevBtn) prevBtn.addEventListener('click', () => wheelInstance.prev());
-        if (nextBtn) nextBtn.addEventListener('click', () => wheelInstance.next());
-      }
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', startWorksWheel);
-    } else {
-      startWorksWheel();
-    }
-  </script>
-  <script type="module" src="./scroll-expand-media.js"></script>
-  <script type="module" src="./experience-section.js"></script>
+  <script type="module" src="./scroll-expand-media.js?v=4"></script>
+  <script type="module" src="./experience-section.js?v=4"></script>
+  <script src="./press-section.js" defer></script>
+  <script type="module" src="./skills-3d.js"></script>
+  <script src="./smooth-scroll.js" defer></script>
+  <script src="./fx.js" defer></script>
+  <script type="module" src="./cine-universe.js"></script>
+  <script src="./cine-journey.js" defer></script>
 </body>
 </html>

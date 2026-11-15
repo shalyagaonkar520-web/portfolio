@@ -1,0 +1,94 @@
+/* ==========================================================
+   Cinematic pages after the hero: "My AI arsenal" (WebGL) and
+   "A journey through time" (SVG + DOM). Dark, red-lit, grainy.
+   ========================================================== */
+.cine{--red:#ff3b30;--ember:#ff6a3a;--paper:#f4efe6;position:relative;background:#050203;color:var(--paper);overflow:clip}
+.cine-k{font:600 11px/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.24em;text-transform:uppercase;color:var(--red)}
+.cine-h{margin-top:14px;font-family:'Antonio','Plus Jakarta Sans',sans-serif;font-weight:400;font-size:clamp(52px,6.4vw,112px);line-height:.9;text-transform:uppercase;letter-spacing:-.005em}
+.cine-h em{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:500;text-transform:none;color:var(--red)}
+.cine-p{margin-top:16px;max-width:300px;font-size:14px;line-height:1.55;color:rgba(244,239,230,.72)}
+.cine-vig{position:absolute;inset:0;pointer-events:none;z-index:2;background:radial-gradient(ellipse at 50% 55%,transparent 45%,rgba(0,0,0,.75) 100%)}
+.cine-grain{position:absolute;inset:-50%;pointer-events:none;z-index:3;opacity:.09;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:cineGrain .9s steps(5) infinite}
+@keyframes cineGrain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-4%)}60%{transform:translate(-4%,-1%)}80%{transform:translate(3%,3%)}}
+.cine-side{position:absolute;top:30%;z-index:4;list-style:none;font:600 11px/2 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.32em;text-transform:uppercase;color:rgba(244,239,230,.32);pointer-events:none}
+.cine-side.l{left:clamp(20px,3.25vw,48px)}.cine-side.r{right:clamp(20px,3.25vw,48px);text-align:right}
+.cine-corner{position:absolute;bottom:28px;z-index:4;font:600 11px/1.6 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.2em;text-transform:uppercase;color:var(--red);pointer-events:none}
+.cine-corner span{color:rgba(244,239,230,.55)}
+.cine-corner.bl{left:clamp(20px,3.25vw,48px)}.cine-corner.br{right:clamp(20px,3.25vw,48px);text-align:right;color:rgba(244,239,230,.45)}
+
+/* ---------- AI arsenal ---------- */
+.uni{height:220vh}
+.uni-pin{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden}
+.uni .cine-side{display:none}
+.uni-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.uni-copy{position:absolute;z-index:4;left:clamp(20px,3.25vw,48px);top:clamp(80px,14vh,140px);pointer-events:none}
+.uni-tip{position:absolute;left:0;top:0;z-index:6;pointer-events:none;max-width:260px;padding:10px 12px;border-radius:10px;background:rgba(14,10,11,.92);border:1px solid rgba(255,59,48,.35);
+  box-shadow:0 18px 40px -16px rgba(0,0,0,.8);font-size:12px;line-height:1.45;color:rgba(244,239,230,.8);opacity:0;transition:opacity .2s}
+.uni-tip.on{opacity:1}
+.uni-tip b{display:block;font-size:14px;margin-bottom:2px}
+.uni-tip span{display:block}
+
+/* ---------- journey ---------- */
+.jr{height:260vh;--intro:0}
+.jr-pin{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;background:radial-gradient(ellipse at 50% 85%,#1a0705 0%,#070303 55%,#030202 100%)}
+.jr-stage{position:absolute;left:50%;top:50%;width:min(100vw,177.78vh);aspect-ratio:16/9;transform:translate(-50%,-50%);z-index:1}
+.jr-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.jr-floor ellipse{stroke-width:1.2;opacity:calc(.35 * var(--intro));stroke-dasharray:6 10}
+.jr-dial{fill:none;stroke:rgba(244,239,230,.25);stroke-width:1.5;stroke-dasharray:1900;stroke-dashoffset:calc(1900 * (1 - var(--intro)))}
+.jr-tick{stroke:rgba(244,239,230,.25);stroke-width:1.5;opacity:var(--intro)}
+.jr-tick.big{stroke:rgba(244,239,230,.55);stroke-width:2.5}
+.jr-rail{fill:none;stroke:var(--red);stroke-width:2.2;stroke-dasharray:1500;stroke-dashoffset:calc(1500 * (1 - var(--intro)));filter:drop-shadow(0 0 6px rgba(255,59,48,.8))}
+.jr-node{fill:#140605;stroke:var(--red);stroke-width:2.5;opacity:var(--intro);transition:r .3s,fill .3s}
+.jr-node.on{fill:var(--red);r:13;filter:drop-shadow(0 0 10px #ff3b30)}
+.jr-year{font:600 30px/1 'Antonio','Plus Jakarta Sans',sans-serif;fill:rgba(244,239,230,.55);opacity:var(--intro);letter-spacing:.02em}
+.jr-beam{opacity:calc(.9 * var(--intro));mix-blend-mode:screen}
+.jr-hand{stroke:var(--red);stroke-width:5;stroke-linecap:round;opacity:var(--intro)}
+.jr-hand2{stroke:#d9b98a;stroke-width:3;stroke-linecap:round;opacity:calc(.8 * var(--intro))}
+.jr-pivot{fill:#e7cfa4;stroke:#7a5b2e;stroke-width:3;opacity:var(--intro)}
+.jr-fig{position:absolute;left:50%;bottom:3%;height:58%;transform:translateX(-50%);z-index:2;pointer-events:none;
+  filter:brightness(.82) contrast(1.08) drop-shadow(-2px 0 1px rgba(255,59,48,.9)) drop-shadow(2px 0 1px rgba(255,140,90,.5)) drop-shadow(0 0 22px rgba(255,59,48,.35));
+  opacity:var(--intro)}
+.jr-card{position:absolute;z-index:3;width:14.6%;transform:translate(-50%,calc((1 - var(--intro)) * 40px));opacity:calc(var(--intro) * .55);text-align:left;
+  padding:clamp(10px,1vw,16px);border-radius:10px;border:1px solid rgba(244,239,230,.14);background:linear-gradient(180deg,rgba(28,14,12,.85),rgba(10,6,6,.9));
+  color:var(--paper);box-shadow:0 30px 50px -24px rgba(0,0,0,.9);transition:opacity .35s,border-color .35s,box-shadow .35s,transform .35s;cursor:pointer;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.jr-card.on{opacity:var(--intro);border-color:rgba(255,59,48,.85);box-shadow:0 0 0 1px rgba(255,59,48,.4),0 0 40px -6px rgba(255,59,48,.55),0 30px 60px -24px rgba(0,0,0,.9);transform:translate(-50%,-8px)}
+.jr-card:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.jr-when{display:block;font:600 clamp(10px,.8vw,12px)/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.14em;color:var(--red)}
+.jr-card b{display:block;margin-top:8px;font-family:'Antonio','Plus Jakarta Sans',sans-serif;font-weight:400;font-size:clamp(17px,1.5vw,26px);line-height:1;text-transform:uppercase}
+.jr-where{display:block;margin-top:6px;font-size:clamp(10px,.8vw,12.5px);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,239,230,.8)}
+.jr-what{display:block;margin-top:8px;font-size:clamp(10px,.78vw,12.5px);line-height:1.45;color:rgba(244,239,230,.6)}
+.jr-copy{position:absolute;z-index:4;pointer-events:none}
+.jr-copy.l{left:clamp(20px,3.25vw,48px);top:clamp(80px,14vh,140px)}
+.jr-title{margin-top:14px;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(20px,1.7vw,30px);line-height:1.25;letter-spacing:.28em;text-transform:uppercase}
+.jr-copy.l ul{margin-top:18px;list-style:none;font:600 10.5px/2 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,239,230,.4)}
+.jr-copy.r{right:clamp(20px,3.25vw,48px);top:clamp(80px,14vh,140px);text-align:right;font:600 11px/1.8 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.22em;text-transform:uppercase;color:var(--red)}
+.jr-copy.r span{display:block;margin-top:14px;color:rgba(244,239,230,.4)}
+
+/* phones and narrow tablets: the timeline stands up into a vertical list */
+@media (max-width:899px){
+  .uni{height:180vh}
+  .cine-side{display:none}
+  .uni-copy{top:72px}
+  .jr{height:auto}
+  .jr-pin{position:relative;height:auto;padding:90px 18px 60px}
+  .jr-copy.l{position:relative;left:0;top:0}
+  .jr-copy.l ul,.jr-copy.r{display:none}
+  .jr-stage{position:relative;left:0;top:0;width:100%;aspect-ratio:auto;transform:none;margin-top:28px;padding-left:26px}
+  .jr-stage::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--red),rgba(255,59,48,.15));box-shadow:0 0 8px rgba(255,59,48,.7)}
+  .jr-svg{display:none}
+  .jr-fig{position:absolute;right:-30px;left:auto;bottom:auto;top:-170px;height:240px;transform:none;opacity:.55}
+  .jr-card{position:relative;left:auto!important;top:auto!important;width:100%;transform:none!important;margin-bottom:14px;opacity:.7}
+  .jr-card.on{opacity:1}
+  .jr-card::before{content:'';position:absolute;left:-24px;top:18px;width:12px;height:12px;border-radius:50%;background:#140605;border:2px solid var(--red)}
+  .jr-card.on::before{background:var(--red);box-shadow:0 0 10px var(--red)}
+  .cine-corner{bottom:16px}
+}
+@media (prefers-reduced-motion:reduce){.cine-grain{animation:none}}
+
+/* the startups chapter is the one to notice: amber-edged, Nirmaan called out */
+.jr-card--startup{border-color:rgba(255,184,0,.45);background:linear-gradient(180deg,rgba(40,22,6,.9),rgba(12,7,4,.92))}
+.jr-card--startup .jr-when,.jr-card--startup .jr-where{color:#ffb800}
+.jr-card--startup.on{border-color:#ffb800;box-shadow:0 0 0 1px rgba(255,184,0,.4),0 0 44px -6px rgba(255,184,0,.55),0 30px 60px -24px rgba(0,0,0,.9)}

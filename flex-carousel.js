@@ -4,52 +4,134 @@ export const photo = (id) => `https://images.unsplash.com/${id}?w=1200&q=80&auto
 
 export const DEFAULT_ITEMS = [
   {
-    src: 'Project Images/Cafe Website.png',
-    alt: 'Cafe Website',
-    title: 'Cafe Website',
-    subtitle: 'Editorial Coffee House Experience',
-    description: 'A full-stack cafe management system with an admin portal for orders, menu, and reservations',
-    link: 'https://mochaandmiso.web.app/'
+    "src": "assets/projects/malanadu-stay.jpg",
+    "image": "assets/projects/malanadu-stay.jpg",
+    "alt": "Malanadu Stay",
+    "title": "Malanadu Stay",
+    "subtitle": "Homestay & Resort Booking",
+    "category": "BOOKING PLATFORM",
+    "description": "Book handpicked estate homestays and luxury resorts in Chikmagalur, Kalasa and Kadur — with search by place, dates and guests, region browsing, and profile & bookings.",
+    "link": "https://chickmanglore-resort.vercel.app",
+    "href": "https://chickmanglore-resort.vercel.app",
+    "stats": "React • TypeScript • Vite • Vercel",
+    "tools": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Vercel"
+    ],
+    "deliverables": [
+      "Live: chickmanglore-resort.vercel.app",
+      "Code: github.com/shalyagaonkar520-web/chickmanglore-resort"
+    ]
   },
   {
-    src: 'Project Images/Design Studio.png',
-    alt: 'Design Studio',
-    title: 'Design Studio',
-    subtitle: 'Creative Agency & Brand Identity',
-    description: 'A bold design studio website built to showcase creative services, brand identity, and digital experiences',
-    link: 'https://echo-design-studio-ex.vercel.app/'
+    "src": "assets/projects/moduleforge.jpg",
+    "image": "assets/projects/moduleforge.jpg",
+    "alt": "ModuleForge",
+    "title": "ModuleForge",
+    "subtitle": "Visual Software Composer for AI Agents",
+    "category": "AI DEVELOPER TOOL",
+    "description": "Discover reusable software modules, visually assemble microservices, and compile clean, ready-to-build architectures for AI coding agents — exported as a project file or ZIP.",
+    "link": "https://rooman-module-projectt.vercel.app",
+    "href": "https://rooman-module-projectt.vercel.app",
+    "stats": "TypeScript • Monorepo • Vercel",
+    "tools": [
+      "TypeScript",
+      "Monorepo",
+      "Vercel"
+    ],
+    "deliverables": [
+      "Live: rooman-module-projectt.vercel.app",
+      "Code: github.com/shalyagaonkar520-web/rooman-module-projectt"
+    ]
   },
   {
-    src: 'Project Images/Photographer Portfolio.png',
-    alt: 'Photographer Portfolio',
-    title: 'Photographer Portfolio',
-    subtitle: 'Editorial & Analog Photography',
-    description: 'An analog & editorial photography portfolio showcasing timeless visual stories',
-    link: 'https://julianvance.vercel.app/'
+    "src": "assets/projects/mintoo.jpg",
+    "image": "assets/projects/mintoo.jpg",
+    "alt": "Mintoo",
+    "title": "Mintoo",
+    "subtitle": "Premium Food Delivery",
+    "category": "FOOD DELIVERY",
+    "description": "Full source for the Mintoo food delivery platform — a web app and an Android mobile app.",
+    "link": "https://fooddd-seven.vercel.app",
+    "href": "https://fooddd-seven.vercel.app",
+    "stats": "React • TypeScript • Android • Vercel",
+    "tools": [
+      "React",
+      "TypeScript",
+      "Android",
+      "Vercel"
+    ],
+    "deliverables": [
+      "Live: fooddd-seven.vercel.app",
+      "Code: github.com/shalyagaonkar520-web/fooddd"
+    ]
   },
   {
-    src: 'Project Images/Portfolio Design.png',
-    alt: 'Portfolio Design',
-    title: 'Portfolio Design',
-    subtitle: 'Minimalist Creative Developer Portfolio',
-    description: 'A sleek, high-performance portfolio crafted with modern typography, fluid interactions, and curated creative work.',
-    link: 'https://echooo.web.app/'
+    "src": "assets/projects/rooman-ai-interviewer.jpg",
+    "image": "assets/projects/rooman-ai-interviewer.jpg",
+    "alt": "Rooman AI Interviewer",
+    "title": "Rooman AI Interviewer",
+    "subtitle": "AI Interview Platform & Career Assistant",
+    "category": "AI PRODUCT",
+    "description": "An AI interview platform that prepares several AI services to run interviews and act as a career assistant. Covered by an automated test suite (26 tests passing).",
+    "link": "https://rooman-tech-staging.up.railway.app/",
+    "href": "https://rooman-tech-staging.up.railway.app/",
+    "stats": "React • TypeScript • AI • Railway",
+    "tools": [
+      "React",
+      "TypeScript",
+      "AI",
+      "Railway"
+    ],
+    "deliverables": [
+      "Live: rooman-tech-staging.up.railway.app",
+      "Code: github.com/shalyagaonkar520-web/ROOMAN-TECH"
+    ]
   },
   {
-    src: 'Project Images/Portfolio Website.png',
-    alt: 'Portfolio Website',
-    title: 'Portfolio Website',
-    subtitle: 'Personal Developer & Designer Portfolio',
-    description: 'A personal portfolio highlighting full-stack engineering, interactive UI components, and modern web craft.',
-    link: 'https://jishnumondal.vercel.app/'
+    "src": "assets/projects/nexride.jpg",
+    "image": "assets/projects/nexride.jpg",
+    "alt": "NexRide",
+    "title": "NexRide",
+    "subtitle": "Real-Time Ride-Hailing Platform",
+    "category": "MOBILITY",
+    "description": "Full-stack ride-hailing app with live GPS tracking, dynamic dispatch, a driver navigation HUD, trip PIN security, in-trip chat, wallet & promos, and an admin dispatch centre.",
+    "link": "https://github.com/shalyagaonkar520-web/taxi",
+    "href": "https://github.com/shalyagaonkar520-web/taxi",
+    "stats": "React 18 • Node.js • Socket.IO • Leaflet • Tailwind",
+    "tools": [
+      "React 18",
+      "Node.js",
+      "Socket.IO",
+      "Leaflet",
+      "Tailwind"
+    ],
+    "deliverables": [
+      "Code: github.com/shalyagaonkar520-web/taxi"
+    ]
   },
   {
-    src: 'Project Images/Sen Cruzo-Client Portfolio.png',
-    alt: 'Sen Cruzo',
-    title: 'Sen Cruzo',
-    subtitle: 'Luxury Architectural & Client Portfolio',
-    description: 'A bespoke editorial portfolio designed for high-profile client presentation, featuring immersive layouts and architectural visual storytelling.',
-    link: 'https://sencruzo.web.app/'
+    "src": "assets/projects/rooman-one.jpg",
+    "image": "assets/projects/rooman-one.jpg",
+    "alt": "Rooman One",
+    "title": "Rooman One",
+    "subtitle": "Business App Suite",
+    "category": "SAAS PLATFORM",
+    "description": "A suite of business apps for Indian businesses that share one login, one company account and one customer list — starting with Rooman Books, the accounting app.",
+    "link": "https://github.com/shalyagaonkar520-web/books-modular",
+    "href": "https://github.com/shalyagaonkar520-web/books-modular",
+    "stats": "Python • Monorepo • Docker • OpenAPI",
+    "tools": [
+      "Python",
+      "Monorepo",
+      "Docker",
+      "OpenAPI"
+    ],
+    "deliverables": [
+      "Code: github.com/shalyagaonkar520-web/books-modular"
+    ]
   }
 ];
 
@@ -279,6 +361,7 @@ export function initFlexCarousel(container, options = {}) {
     autoplay: options.autoplay !== undefined ? options.autoplay : false,
     interval: options.interval || 4,
     captureWheel: options.captureWheel !== undefined ? options.captureWheel : true,
+    loop: options.loop !== undefined ? options.loop : true,
     captions: options.captions !== undefined ? options.captions : true
   };
 
@@ -588,11 +671,15 @@ export function initFlexCarousel(container, options = {}) {
     return { cardH, widths, centers, gap: s.gap, loop: Math.max(cursor, 1) };
   };
 
+  // wrap only when the carousel loops; otherwise distances are plain
+  const W = (v, size) => (settings.loop ? wrap(v, size) : v);
+  const clampGoal = (m, v) => (settings.loop ? v : Math.min(m.centers[m.centers.length - 1], Math.max(m.centers[0], v)));
+
   const nearest = (m, at) => {
     let best = 0;
     let bestDist = Infinity;
     for (let i = 0; i < m.centers.length; i++) {
-      const dist = Math.abs(wrap(m.centers[i] - at, m.loop));
+      const dist = Math.abs(W(m.centers[i] - at, m.loop));
       if (dist < bestDist) {
         bestDist = dist;
         best = i;
@@ -603,12 +690,12 @@ export function initFlexCarousel(container, options = {}) {
 
   const snapPoint = (m, at) => {
     const i = nearest(m, at);
-    return at + wrap(m.centers[i] - at, m.loop);
+    return at + W(m.centers[i] - at, m.loop);
   };
 
   const remap = (from, to, at) => {
     const i = nearest(from, at);
-    const offset = wrap(at - from.centers[i], from.loop);
+    const offset = W(at - from.centers[i], from.loop);
     const cycles = Math.round((at - offset - from.centers[i]) / from.loop);
     return cycles * to.loop + to.centers[i] + offset * (to.widths[i] / from.widths[i]);
   };
@@ -618,6 +705,7 @@ export function initFlexCarousel(container, options = {}) {
     let index = nearest(m, at);
     const n = m.centers.length;
     for (let k = 0; k < Math.abs(delta); k++) {
+      if (!settings.loop && (delta > 0 ? index >= n - 1 : index <= 0)) break;
       const next = (index + (delta > 0 ? 1 : n - 1)) % n;
       const distance =
         delta > 0
@@ -634,7 +722,7 @@ export function initFlexCarousel(container, options = {}) {
 
   const goTo = (m, index) => {
     const i = ((index % m.centers.length) + m.centers.length) % m.centers.length;
-    goal = goal + wrap(m.centers[i] - goal, m.loop);
+    goal = goal + W(m.centers[i] - goal, m.loop);
     mode = 'spring';
     dirty = true;
     start();
@@ -791,6 +879,7 @@ export function initFlexCarousel(container, options = {}) {
       goal = snapPoint(m, goal);
       mode = 'spring';
     }
+    goal = clampGoal(m, goal);
     if (!pointer.dragging) {
       const spinning = introState.running && introState.kind === 'spin';
       const stiffness = spinning ? 9 : mode === 'wheel' ? 80 : 55;
@@ -812,7 +901,7 @@ export function initFlexCarousel(container, options = {}) {
       animating = true;
     }
 
-    if (Math.abs(pos) > m.loop * 8) {
+    if (s.loop && Math.abs(pos) > m.loop * 8) {
       const shift = Math.round(pos / m.loop) * m.loop;
       pos -= shift;
       goal -= shift;
@@ -931,8 +1020,8 @@ export function initFlexCarousel(container, options = {}) {
       const draws = [];
       for (let i = 0; i < n; i++) {
         const w = m.widths[i];
-        const baseRel = wrap(m.centers[i] - pos, m.loop);
-        for (let k = -3; k <= 3; k++) {
+        const baseRel = W(m.centers[i] - pos, m.loop);
+        for (let k = s.loop ? -3 : 0; k <= (s.loop ? 3 : 0); k++) {
           const rel = baseRel + k * m.loop;
           if (Math.abs(rel) - w / 2 > width + 40) continue;
           const fx = effects.card ? effects.card(rel) : null;
@@ -1084,6 +1173,12 @@ export function initFlexCarousel(container, options = {}) {
       }
       if (pointer.dragging) {
         pos = pointer.startPos - (x - pointer.startX);
+        if (!settings.loop) {
+          // rubber-band past the first / last card instead of wrapping around
+          const m = metrics(settings), lo = m.centers[0], hi = m.centers[m.centers.length - 1];
+          if (pos < lo) pos = lo - Math.sqrt(lo - pos) * 6;
+          else if (pos > hi) pos = hi + Math.sqrt(pos - hi) * 6;
+        }
         goal = pos;
         vel = 0;
         const now = performance.now();
@@ -1219,7 +1314,8 @@ export function initFlexCarousel(container, options = {}) {
   container.addEventListener('pointerup', onPointerUp);
   container.addEventListener('pointerleave', onPointerLeave);
   container.addEventListener('pointercancel', onPointerCancel);
-  container.addEventListener('wheel', onWheel, { passive: false });
+  // wheel is left to the page so scrolling always continues down past the carousel
+  if (settings.captureWheel !== 'none') container.addEventListener('wheel', onWheel, { passive: false });
   container.addEventListener('keydown', onKeyDown);
   container.addEventListener('focus', onFocus);
   container.addEventListener('blur', onBlur);
