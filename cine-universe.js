@@ -111,11 +111,11 @@ function init() {
       }`,
   });
   const fig = new THREE.Mesh(new THREE.PlaneGeometry(FIG_W, FIG_H), figMat);
-  fig.position.set(0, FIG_H / 2, 0); scene.add(fig);
+  fig.position.set(0, FIG_H / 2, 0); // the standing photo is no longer shown: the sunglasses film on page 2 replaced it
   const reflMat = figMat.clone(); reflMat.uniforms = THREE.UniformsUtils.clone(figMat.uniforms);
   reflMat.uniforms.uTex.value = figTex; reflMat.uniforms.uFlip.value = 1;
   const refl = new THREE.Mesh(new THREE.PlaneGeometry(FIG_W, FIG_H), reflMat);
-  refl.position.set(0, -FIG_H / 2 + 0.01, 0); refl.renderOrder = 2; reflMat.depthTest = false; scene.add(refl);
+  refl.position.set(0, -FIG_H / 2 + 0.01, 0); refl.renderOrder = 2; reflMat.depthTest = false;
   fig.renderOrder = 3;
 
   // ---------- tool cubes ----------
