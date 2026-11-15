@@ -163,8 +163,11 @@ function init() {
     const m = new THREE.Mesh(new THREE.BoxGeometry(s, s, s), bodyMat);
     const e = new THREE.LineSegments(new THREE.EdgesGeometry(m.geometry), new THREE.LineBasicMaterial({ color: 0xff3b30, transparent: true, opacity: 0.5 }));
     m.add(e);
-    const ang = Math.random() * Math.PI * 2, rad = 2.5 + Math.random() * 5;
-    m.position.set(Math.cos(ang) * rad, 0.4 + Math.random() * 5, -1.5 + Math.sin(ang) * 2.5);
+    // keep the debris out of a column around the figure so nothing ever floats in front of his face
+    let x, z;
+    do { const ang = Math.random() * Math.PI * 2, rad = 2.5 + Math.random() * 5; x = Math.cos(ang) * rad; z = -1.5 + Math.sin(ang) * 2.5; }
+    while (Math.abs(x) < 2.4);
+    m.position.set(x, 0.4 + Math.random() * 5, z);
     m.rotation.set(Math.random() * 3, Math.random() * 3, 0);
     m.scale.setScalar(0.001);
     scene.add(m); debris.push({ m, spin: (Math.random() - 0.5) * 0.6, y0: m.position.y, seed: Math.random() * 10 });
