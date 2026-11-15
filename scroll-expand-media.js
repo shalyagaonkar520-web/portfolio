@@ -32,8 +32,9 @@ export function initScrollExpandMedia() {
     // Fully expanded size matching the image aspect ratio (1024 / 546)
     const maxWByViewport = window.innerWidth * 0.94;
     const maxWByHeight = (window.innerHeight * 0.86) * ASPECT_RATIO;
-    const endW = Math.min(maxWByViewport, maxWByHeight);
-    const endH = endW / ASPECT_RATIO;
+    // phones: open into a tall card so the spec sheet fits, instead of a thin landscape strip
+    const endW = isMobile ? maxWByViewport : Math.min(maxWByViewport, maxWByHeight);
+    const endH = isMobile ? Math.min(window.innerHeight * 0.8, 660) : endW / ASPECT_RATIO;
 
     const currentW = startW + progress * (endW - startW);
     const currentH = startH + progress * (endH - startH);

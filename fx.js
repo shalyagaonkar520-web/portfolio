@@ -21,11 +21,7 @@
     if (en.isIntersecting) { if (!f._fxLive) { f.src = f.dataset.src; f._fxLive = true; } }
     else if (f._fxLive) f._fxUnload = setTimeout(() => { f.src = 'about:blank'; f._fxLive = false; }, 1500);
   }), { rootMargin: '350px 0px' });
-  document.querySelectorAll('iframe.venom-frame[data-src]').forEach((f) => venomIO.observe(f));
-
-  addEventListener('message', (e) => {
-    if (e.origin !== location.origin || !e.data || e.data.type !== 'venom:activate') return;
-    const id = String(e.data.id || '');
+  function runVenom(id) {
     if (id.startsWith('nav:')) { document.getElementById(id.slice(4))?.scrollIntoView({ behavior: 'smooth' }); return; }
     if (id.startsWith('svc:')) {
       const name = decodeURIComponent(id.slice(4));
@@ -33,6 +29,22 @@
       return;
     }
     (VENOM_ACTIONS[id] || contact)();
+  }
+  // Phones and tablets have no cursor for the goo to chase, and a dozen ray-marched buttons are heavy
+  // there, so touch devices get a plain black pill with the same label and action instead.
+  const LITE = matchMedia('(pointer: coarse)').matches || innerWidth < 900;
+  document.querySelectorAll('iframe.venom-frame[data-src]').forEach((f) => {
+    if (!LITE) { venomIO.observe(f); return; }
+    const q = new URL(f.dataset.src, location.href).searchParams;
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'vlite'; b.textContent = q.get('label') || 'let’s collaborate';
+    b.addEventListener('click', (e) => { e.stopPropagation(); runVenom(q.get('id') || ''); });
+    f.replaceWith(b);
+  });
+
+  addEventListener('message', (e) => {
+    if (e.origin !== location.origin || !e.data || e.data.type !== 'venom:activate') return;
+    runVenom(String(e.data.id || ''));
   });
 
   const ZONE_IDS = ['skills', 'about', 'experience', 'projects', 'services', 'contact'];

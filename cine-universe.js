@@ -218,7 +218,7 @@ function init() {
     // camera: dolly in with scroll, lean with the mouse
     mouse.lerp(mouseT, Math.min(1, dt * 4));
     const portrait = camera.aspect < 0.9;
-    const camZ = (portrait ? 15.5 : 11.2) - p * 2.2;
+    const camZ = (portrait ? 13 : 11.2) - p * 2.2;
     camera.position.set(mouse.x * 0.9, 2.3 + p * 0.3 - mouse.y * 0.35, camZ);
     camera.lookAt(0, 2.0, 0);
 
@@ -246,7 +246,7 @@ function init() {
       const e = 1 - Math.pow(1 - k, 4);
       c.hover += ((i === hovered ? 1 : 0) - c.hover) * Math.min(1, dt * 8);
       const bob = RM ? 0 : Math.sin(time * 0.8 + c.seed) * 0.12;
-      c.grp.position.set(c.base.x * (0.6 + 0.4 * e), c.base.y + bob + (1 - e) * -1.2 + c.hover * 0.15, c.base.z + c.hover * 0.6);
+      c.grp.position.set(c.base.x * (0.6 + 0.4 * e) * (portrait ? 0.55 : 1), c.base.y + bob + (1 - e) * -1.2 + c.hover * 0.15, c.base.z + c.hover * 0.6);
       c.grp.rotation.set(
         c.base.rx + (RM ? 0 : Math.sin(time * 0.35 + c.seed) * 0.12) + mouse.y * 0.15 + (1 - e) * 1.5,
         c.base.ry + (RM ? 0 : Math.cos(time * 0.3 + c.seed) * 0.15) + mouse.x * 0.3 - c.hover * c.base.ry * 0.8,

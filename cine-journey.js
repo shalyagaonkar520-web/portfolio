@@ -98,7 +98,7 @@
   new IntersectionObserver(([e]) => {
     visible = e.isIntersecting;
     if (visible) introStarted = true;
-  }, { threshold: 0.02 }).observe(section);
+  }, { threshold: 0.2 }).observe(section);
   if (RM) section.style.setProperty('--intro', '1');
   draw();
   requestAnimationFrame(loop);
