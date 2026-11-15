@@ -88,9 +88,7 @@ function init() {
 
   // ---------- the figure: matted photo, graded down, with a red rim generated from its alpha ----------
   const figTex = new THREE.TextureLoader().load('assets/cine/me_cut.png');
-  // keep the photo in display colour: this custom shader writes straight to the screen without an
-  // sRGB conversion, so decoding to linear here made every midtone (his face) far too dark
-  figTex.colorSpace = THREE.NoColorSpace;
+  figTex.colorSpace = THREE.SRGBColorSpace;
   const FIG_H = 3.7, FIG_W = FIG_H * (450 / 1450);
   const figMat = new THREE.ShaderMaterial({
     uniforms: { uTex: { value: figTex }, uMat: { value: 0 }, uFlip: { value: 0 }, uTexel: { value: new THREE.Vector2(1 / 450, 1 / 1450) } },
@@ -105,7 +103,7 @@ function init() {
         float l = texture2D(uTex, uv + vec2(-6.0, 0.0) * uTexel).a, r = texture2D(uTex, uv + vec2(6.0, 0.0) * uTexel).a;
         float u = texture2D(uTex, uv + vec2(0.0, 6.0) * uTexel).a;
         float rimL = clamp(c.a - l, 0.0, 1.0), rimR = clamp(c.a - r, 0.0, 1.0), rimU = clamp(c.a - u, 0.0, 1.0);
-        vec3 col = pow(c.rgb, vec3(0.88)) * 1.06;  // natural photo, lifted a touch so the face reads clearly
+        vec3 col = (c.rgb - 0.5) * 1.08 + 0.5; col *= vec3(0.9, 0.86, 0.86);  // near-natural, like a lit subject
         col += vec3(1.0, 0.18, 0.12) * (rimL * 0.8 + rimU * 0.45) + vec3(1.0, 0.45, 0.3) * rimR * 0.35;
         float a = c.a * uMat;
         if (uFlip > 0.5) { a *= 0.22 * smoothstep(0.55, 1.0, vUv.y); col *= 0.6; }
