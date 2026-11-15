@@ -149,3 +149,10 @@ body{
 /* ---------- smoothness: promote the pinned layers, keep paint work light ---------- */
 .sk-pin,.uni-pin,.jr-pin,#exp-sticky-viewport{will-change:transform;transform:translateZ(0)}
 @media (max-width:899px),(prefers-reduced-motion:reduce){.cine-grain{animation:none}}
+
+/* ---------- slower pacing: the journey and about scenes get more scroll distance ---------- */
+@media (min-width:900px){
+  .jr{height:560vh!important}
+  #about{min-height:440vh!important}
+}
+@media (max-width:899px){#about{min-height:260vh!important}}
